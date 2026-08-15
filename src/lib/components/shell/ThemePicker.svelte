@@ -94,144 +94,144 @@
 	>
 		<ThemeButton />
 	</button>
-</div>
 
-{#if themeState.isOpen}
-	<div class="theme-popover" role="dialog" aria-label="Theme and Aura Background Switcher">
-		<!-- Style Switcher (Plain vs Aura Gradient) -->
-		<div class="theme-style-switcher">
-			<div class="theme-style-toggle-group">
-				<button
-					type="button"
-					class="theme-style-toggle-btn"
-					class:active={themeState.bgStyle === 'plain'}
-					onclick={() => themeState.setBgStyle('plain')}
-					title="Clean distraction-free flat backgrounds"
-				>
-					<span>◻</span> Plain
-				</button>
-				<button
-					type="button"
-					class="theme-style-toggle-btn"
-					class:active={themeState.bgStyle === 'aura'}
-					onclick={() => themeState.setBgStyle('aura')}
-					title="Atmospheric gradient blend aura"
-				>
-					<span>✨</span> Aura Gradient
-				</button>
-			</div>
-
-			<button
-				type="button"
-				class="theme-icon-btn"
-				aria-label="Close theme menu"
-				onclick={() => themeState.closePicker()}
-			>
-				<svg
-					viewBox="0 0 24 24"
-					width="14"
-					height="14"
-					fill="none"
-					stroke="currentColor"
-					stroke-width="2"
-					stroke-linecap="round"
-					stroke-linejoin="round"
-				>
-					<path d="M18 6 6 18" />
-					<path d="m6 6 12 12" />
-				</svg>
-			</button>
-		</div>
-
-		<!-- Filter Tabs -->
-		<div class="theme-tabs row xbetween">
-			<div class="row gap8 ycenter">
-				<button
-					type="button"
-					class="theme-tab-btn"
-					class:active={activeTab === 'all'}
-					onclick={() => (activeTab = 'all')}
-				>
-					All ({THEMES.length})
-				</button>
-				<button
-					type="button"
-					class="theme-tab-btn"
-					class:active={activeTab === 'light'}
-					onclick={() => (activeTab = 'light')}
-				>
-					Light ({LIGHT_THEMES.length})
-				</button>
-				<button
-					type="button"
-					class="theme-tab-btn"
-					class:active={activeTab === 'dark'}
-					onclick={() => (activeTab = 'dark')}
-				>
-					Dark ({DARK_THEMES.length})
-				</button>
-				<button
-					type="button"
-					class="theme-tab-btn"
-					title="Cycle to next theme"
-					aria-label="Cycle to next theme"
-					onclick={() => themeState.cycleNext()}
-				>
-					NEXT
-				</button>
-			</div>
-		</div>
-
-		<!-- Themes Grid -->
-		<div class="theme-grid-container">
-			{#each filteredThemes as theme (theme.id)}
-				<button
-					type="button"
-					class="theme-card"
-					class:active={themeState.current === theme.id}
-					title="{theme.name} — {theme.description} (Aura: {theme.auraName})"
-					onclick={() => {
-						themeState.setTheme(theme.id);
-					}}
-				>
-					<div class="theme-card-header">
-						<span class="theme-card-name">{theme.name}</span>
-						<span class="theme-card-badge">{theme.mode}</span>
-					</div>
-
-					<div
-						class="theme-card-preview"
-						style="background-color: {theme.bgColor}; color: {theme.textColor}; border-color: {theme.accentColor}33"
+	{#if themeState.isOpen}
+		<div class="theme-popover" role="dialog" aria-label="Theme and Aura Background Switcher">
+			<!-- Style Switcher (Plain vs Aura Gradient) -->
+			<div class="theme-style-switcher">
+				<div class="theme-style-toggle-group">
+					<button
+						type="button"
+						class="theme-style-toggle-btn"
+						class:active={themeState.bgStyle === 'plain'}
+						onclick={() => themeState.setBgStyle('plain')}
+						title="Clean distraction-free flat backgrounds"
 					>
-						<span class="theme-preview-dot" style="background-color: {theme.accentColor}"></span>
-						<span class="theme-preview-dot" style="background-color: {theme.textColor}"></span>
-					</div>
+						<span>◻</span> Plain
+					</button>
+					<button
+						type="button"
+						class="theme-style-toggle-btn"
+						class:active={themeState.bgStyle === 'aura'}
+						onclick={() => themeState.setBgStyle('aura')}
+						title="Atmospheric gradient blend aura"
+					>
+						<span>✨</span> Aura Gradient
+					</button>
+				</div>
 
-					<span class="theme-aura-tag">
-						✨ {theme.auraName}
-					</span>
+				<button
+					type="button"
+					class="theme-icon-btn"
+					aria-label="Close theme menu"
+					onclick={() => themeState.closePicker()}
+				>
+					<svg
+						viewBox="0 0 24 24"
+						width="14"
+						height="14"
+						fill="none"
+						stroke="currentColor"
+						stroke-width="2"
+						stroke-linecap="round"
+						stroke-linejoin="round"
+					>
+						<path d="M18 6 6 18" />
+						<path d="m6 6 12 12" />
+					</svg>
 				</button>
-			{/each}
-		</div>
+			</div>
 
-		<!-- Popover Footer -->
-		<div class="theme-popover-footer">
-			<button
-				type="button"
-				class="theme-footer-btn"
-				onclick={() => themeState.resetDefault()}
-				title="Set default theme (.theme-light-default)"
-			>
-				Reset to Default
-			</button>
-			<button
-				type="button"
-				class="theme-footer-btn"
-				onclick={() => themeState.cycleRandom()}
-				title="Pick a random theme"
-			>
-				🎲 Random
-			</button>
+			<!-- Filter Tabs -->
+			<div class="theme-tabs row xbetween">
+				<div class="row gap8 ycenter">
+					<button
+						type="button"
+						class="theme-tab-btn"
+						class:active={activeTab === 'all'}
+						onclick={() => (activeTab = 'all')}
+					>
+						All ({THEMES.length})
+					</button>
+					<button
+						type="button"
+						class="theme-tab-btn"
+						class:active={activeTab === 'light'}
+						onclick={() => (activeTab = 'light')}
+					>
+						Light ({LIGHT_THEMES.length})
+					</button>
+					<button
+						type="button"
+						class="theme-tab-btn"
+						class:active={activeTab === 'dark'}
+						onclick={() => (activeTab = 'dark')}
+					>
+						Dark ({DARK_THEMES.length})
+					</button>
+					<button
+						type="button"
+						class="theme-tab-btn"
+						title="Cycle to next theme"
+						aria-label="Cycle to next theme"
+						onclick={() => themeState.cycleNext()}
+					>
+						NEXT
+					</button>
+				</div>
+			</div>
+
+			<!-- Themes Grid -->
+			<div class="theme-grid-container">
+				{#each filteredThemes as theme (theme.id)}
+					<button
+						type="button"
+						class="theme-card"
+						class:active={themeState.current === theme.id}
+						title="{theme.name} — {theme.description} (Aura: {theme.auraName})"
+						onclick={() => {
+							themeState.setTheme(theme.id);
+						}}
+					>
+						<div class="theme-card-header">
+							<span class="theme-card-name">{theme.name}</span>
+							<span class="theme-card-badge">{theme.mode}</span>
+						</div>
+
+						<div
+							class="theme-card-preview"
+							style="background-color: {theme.bgColor}; color: {theme.textColor}; border-color: {theme.accentColor}33"
+						>
+							<span class="theme-preview-dot" style="background-color: {theme.accentColor}"></span>
+							<span class="theme-preview-dot" style="background-color: {theme.textColor}"></span>
+						</div>
+
+						<span class="theme-aura-tag">
+							✨ {theme.auraName}
+						</span>
+					</button>
+				{/each}
+			</div>
+
+			<!-- Popover Footer -->
+			<div class="theme-popover-footer">
+				<button
+					type="button"
+					class="theme-footer-btn"
+					onclick={() => themeState.resetDefault()}
+					title="Set default theme (.theme-light-default)"
+				>
+					Reset to Default
+				</button>
+				<button
+					type="button"
+					class="theme-footer-btn"
+					onclick={() => themeState.cycleRandom()}
+					title="Pick a random theme"
+				>
+					🎲 Random
+				</button>
+			</div>
 		</div>
-	</div>
-{/if}
+	{/if}
+</div>
