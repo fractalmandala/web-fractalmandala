@@ -36,7 +36,7 @@
 	},
 	"dependencies": {
 		"@ethercorps/sveltekit-og": "^4.3.0",
-		"acrolls": "file:/Users/amrit/fractalmandala/acrolls/acrolls-0.1.4.tgz",
+		"acrolls": "file:./vendor/acrolls-0.1.4.tgz",
 		"quartzo": "^0.0.6"
 	}
 }
