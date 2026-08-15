@@ -25,51 +25,51 @@ With this prompt, we get to see 1) how these tools are w.r.t. Hindu imagery and 
 
 <div class="grid gap1 two stay">
   <div class="column gap0 null">
-    <Lightbox>
+    <div class="image-box">
       <img src="https://rnfvzaelmwbbvfbsppir.supabase.co/storage/v1/object/public/gallery/testing/p1leo.webp" alt="leo 1"/>
-    </Lightbox>
+    </div>
     <p class="milder smaller">Leonardo A</p>
   </div>
   <div class="column gap0 null">
-    <Lightbox>
+    <div class="image-box">
     <img src="https://rnfvzaelmwbbvfbsppir.supabase.co/storage/v1/object/public/gallery/testing/p1leo2.webp" alt="leo 2"/>
-    </Lightbox>
+    </div>
     <p class="milder smaller">Leonardo B</p>
   </div>
   <div class="column gap0 null">
-    <Lightbox>
+    <div class="image-box">
     <img src="https://rnfvzaelmwbbvfbsppir.supabase.co/storage/v1/object/public/gallery/testing/sd1.webp" alt="sd 1"/>
-    </Lightbox>
+    </div>
     <p class="milder smaller">Stable Diffusion A</p>
   </div>
   <div class="column gap0 null">
-    <Lightbox>
+    <div class="image-box">
     <img src="https://rnfvzaelmwbbvfbsppir.supabase.co/storage/v1/object/public/gallery/testing/sd2.webp" alt="sd 2"/>
-    </Lightbox>
+    </div>
     <p class="milder smaller">Stable Diffusion B</p>
   </div>
   <div class="column gap0 null">
-    <Lightbox>
+    <div class="image-box">
     <img src="https://rnfvzaelmwbbvfbsppir.supabase.co/storage/v1/object/public/gallery/testing/p1mjo.webp" alt="mj 1"/>
-    </Lightbox>
+    </div>
     <p class="milder smaller">Midjourney A</p>
   </div>
   <div class="column gap0 null">
-    <Lightbox>
+    <div class="image-box">
     <img src="https://rnfvzaelmwbbvfbsppir.supabase.co/storage/v1/object/public/gallery/testing/p1mjo2.webp" alt="mj 2"/>
-    </Lightbox>
+    </div>
     <p class="milder smaller">Midjourney B</p>
   </div>
   <div class="column gap0 null">
-    <Lightbox>
+    <div class="image-box">
     <img src="https://rnfvzaelmwbbvfbsppir.supabase.co/storage/v1/object/public/gallery/testing/p1dalle.webp" alt="dalle 1"/>
-    </Lightbox>
+    </div>
     <p class="milder smaller">DallE A</p>
   </div>
   <div class="column gap0 null">
-    <Lightbox>
+    <div class="image-box">
     <img src="https://rnfvzaelmwbbvfbsppir.supabase.co/storage/v1/object/public/gallery/testing/p1dalle2.webp" alt="dalle 2"/>
-    </Lightbox>
+    </div>
     <p class="milder smaller">DallE B</p>
   </div>
 </div>
@@ -86,39 +86,39 @@ This and the next prompt allow us to check the platforms on how well they follow
 
 <div class="grid gap1 two stay">
   <div class="column gap0 null">
-    <Lightbox>
+    <div class="image-box">
       <img src="https://rnfvzaelmwbbvfbsppir.supabase.co/storage/v1/object/public/gallery/testing/p2leo1.webp" alt="leo 1"/>
-    </Lightbox>
+    </div>
     <p class="milder smaller">Leonardo A</p>
   </div>
   <div class="column gap0 null">
-    <Lightbox>
+    <div class="image-box">
       <img src="https://rnfvzaelmwbbvfbsppir.supabase.co/storage/v1/object/public/gallery/testing/p2leo2.webp" alt="leo 2"/>
-    </Lightbox>
+    </div>
     <p class="milder smaller">Leonardo B</p>
   </div>
   <div class="column gap0 null">
-    <Lightbox>
+    <div class="image-box">
       <img src="https://rnfvzaelmwbbvfbsppir.supabase.co/storage/v1/object/public/gallery/testing/p2mj1.webp" alt="mjo 1"/>
-    </Lightbox>
+    </div>
     <p class="milder smaller">Midjourney A</p>
   </div>
   <div class="column gap0 null">
-    <Lightbox>
+    <div class="image-box">
       <img src="https://rnfvzaelmwbbvfbsppir.supabase.co/storage/v1/object/public/gallery/testing/p2mj2.webp" alt="mjo 2"/>
-    </Lightbox>
+    </div>
     <p class="milder smaller">Midjourney B</p>
   </div>
   <div class="column gap0 null">
-    <Lightbox>
+    <div class="image-box">
       <img src="https://rnfvzaelmwbbvfbsppir.supabase.co/storage/v1/object/public/gallery/testing/p2d1.webp" alt="dalle 1"/>
-    </Lightbox>
+    </div>
     <p class="milder smaller">DallE A</p>
   </div>
   <div class="column gap0 null">
-    <Lightbox>
+    <div class="image-box">
       <img src="https://rnfvzaelmwbbvfbsppir.supabase.co/storage/v1/object/public/gallery/testing/p2d2.webp" alt="dalle 2"/>
-    </Lightbox>
+    </div>
     <p class="milder smaller">DallE B</p>
   </div>
 </div>
@@ -131,39 +131,39 @@ With this prompt, Leonardo returns some images that are as bad as Stable Diffusi
 
 <div class="grid gap1 two stay">
   <div class="column gap0 null">
-    <Lightbox>
+    <div class="image-box">
       <img src="https://rnfvzaelmwbbvfbsppir.supabase.co/storage/v1/object/public/gallery/testing/p3l1.webp" alt="leo 1"/>
-    </Lightbox>
+    </div>
     <p class="milder smaller">Leonardo A</p>
   </div>
   <div class="column gap0 null">
-    <Lightbox>
+    <div class="image-box">
       <img src="https://rnfvzaelmwbbvfbsppir.supabase.co/storage/v1/object/public/gallery/testing/p3l2.webp" alt="leo 2"/>
-    </Lightbox>
+    </div>
     <p class="milder smaller">Leonardo B</p>
   </div>
   <div class="column gap0 null">
-    <Lightbox>
+    <div class="image-box">
       <img src="https://rnfvzaelmwbbvfbsppir.supabase.co/storage/v1/object/public/gallery/testing/p3m1.webp" alt="mjo 1"/>
-    </Lightbox>
+    </div>
     <p class="milder smaller">Midjourney A</p>
   </div>
   <div class="column gap0 null">
-    <Lightbox>
+    <div class="image-box">
       <img src="https://rnfvzaelmwbbvfbsppir.supabase.co/storage/v1/object/public/gallery/testing/p3m2.webp" alt="mjo 2"/>
-    </Lightbox>
+    </div>
     <p class="milder smaller">Midjourney B</p>
   </div>
   <div class="column gap0 null">
-    <Lightbox>
+    <div class="image-box">
       <img src="https://rnfvzaelmwbbvfbsppir.supabase.co/storage/v1/object/public/gallery/testing/p3d1.webp" alt="dalle 1"/>
-    </Lightbox>
+    </div>
     <p class="milder smaller">DallE A</p>
   </div>
   <div class="column gap0 null">
-    <Lightbox>
+    <div class="image-box">
       <img src="https://rnfvzaelmwbbvfbsppir.supabase.co/storage/v1/object/public/gallery/testing/p3d2.webp" alt="dalle 2"/>
-    </Lightbox>
+    </div>
     <p class="milder smaller">DallE B</p>
   </div>
 </div>
@@ -180,39 +180,39 @@ Midjourney just doesn't seem to understand these styles, and while Leonardo does
 
 <div class="grid two gap1 stay">
   <div class="column gap0 null">
-    <Lightbox>
+    <div class="image-box">
       <img src="https://rnfvzaelmwbbvfbsppir.supabase.co/storage/v1/object/public/gallery/testing/p4l1.webp" alt="leo 1"/>
-    </Lightbox>
+    </div>
     <p class="milder smaller">Leonardo A</p>
   </div>
   <div class="column gap0 null">
-    <Lightbox>
+    <div class="image-box">
       <img src="https://rnfvzaelmwbbvfbsppir.supabase.co/storage/v1/object/public/gallery/testing/p4l2.webp" alt="leo 2"/>
-    </Lightbox>
+    </div>
     <p class="milder smaller">Leonardo B</p>
   </div>
   <div class="column gap0 null">
-    <Lightbox>
+    <div class="image-box">
       <img src="https://rnfvzaelmwbbvfbsppir.supabase.co/storage/v1/object/public/gallery/testing/p4m1.webp" alt="mjo 1"/>
-    </Lightbox>
+    </div>
     <p class="milder smaller">Midjourney A</p>
   </div>
   <div class="column gap0 null">
-    <Lightbox>
+    <div class="image-box">
       <img src="https://rnfvzaelmwbbvfbsppir.supabase.co/storage/v1/object/public/gallery/testing/p4m2.webp" alt="mjo 2"/>
-    </Lightbox>
+    </div>
     <p class="milder smaller">Midjourney B</p>
   </div>
   <div class="column gap0 null">
-    <Lightbox>
+    <div class="image-box">
       <img src="https://rnfvzaelmwbbvfbsppir.supabase.co/storage/v1/object/public/gallery/testing/p4d1.webp" alt="dalle 1"/>
-    </Lightbox>
+    </div>
     <p class="milder smaller">DallE A</p>
   </div>
   <div class="column gap0 null">
-    <Lightbox>
+    <div class="image-box">
       <img src="https://rnfvzaelmwbbvfbsppir.supabase.co/storage/v1/object/public/gallery/testing/p4d2.webp" alt="dalle 2"/>
-    </Lightbox>
+    </div>
     <p class="milder smaller">DallE B</p>
   </div>
 </div>
@@ -221,39 +221,39 @@ Midjourney just doesn't seem to understand these styles, and while Leonardo does
 
 <div class="grid two gap1 stay">
   <div class="column gap0 null">
-    <Lightbox>
+    <div class="image-box">
       <img src="https://rnfvzaelmwbbvfbsppir.supabase.co/storage/v1/object/public/gallery/testing/p5l1.webp" alt="leo 1"/>
-    </Lightbox>
+    </div>
     <p class="milder smaller">Leonardo A</p>
   </div>
   <div class="column gap0 null">
-    <Lightbox>
+    <div class="image-box">
       <img src="https://rnfvzaelmwbbvfbsppir.supabase.co/storage/v1/object/public/gallery/testing/p5l2.webp" alt="leo 2"/>
-    </Lightbox>
+    </div>
     <p class="milder smaller">Leonardo B</p>
   </div>
   <div class="column gap0 null">
-    <Lightbox>
+    <div class="image-box">
       <img src="https://rnfvzaelmwbbvfbsppir.supabase.co/storage/v1/object/public/gallery/testing/p5m1.webp" alt="mjo 1"/>
-    </Lightbox>
+    </div>
     <p class="milder smaller">Midjourney A</p>
   </div>
   <div class="column gap0 null">
-    <Lightbox>
+    <div class="image-box">
       <img src="https://rnfvzaelmwbbvfbsppir.supabase.co/storage/v1/object/public/gallery/testing/p5m2.webp" alt="mjo 2"/>
-    </Lightbox>
+    </div>
     <p class="milder smaller">Midjourney B</p>
   </div>
   <div class="column gap0 null">
-    <Lightbox>
+    <div class="image-box">
       <img src="https://rnfvzaelmwbbvfbsppir.supabase.co/storage/v1/object/public/gallery/testing/p5d1.webp" alt="dalle 1"/>
-    </Lightbox>
+    </div>
     <p class="milder smaller">DallE A</p>
   </div>
   <div class="column gap0 null">
-    <Lightbox>
+    <div class="image-box">
       <img src="https://rnfvzaelmwbbvfbsppir.supabase.co/storage/v1/object/public/gallery/testing/p5d2.webp" alt="dalle 2"/>
-    </Lightbox>
+    </div>
     <p class="milder smaller">DallE B</p>
   </div>
 </div>

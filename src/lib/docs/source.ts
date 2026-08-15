@@ -52,13 +52,14 @@ export const docs = content({
 		baseHref: '/docs',
 		subtitle: 'writings, civilization, history , thinkers, ideas',
 		folders: {
-			writings: { title: 'Writings', order: 1 },
-			civilization: { title: 'Civilization', order: 2 },
-			'comparative-civilization': { title: 'Comparative Civilization', order: 3 },
-			history: { title: 'History', order: 4 },
-			'karmic-streams': { title: 'Karmic Streams', order: 5 },
-			'sri-aurobindo': { title: 'Sri Aurobindo', order: 6 },
-			'ram-swarup-sita-ram-goel': { title: 'Ram Swarup & Sita Ram Goel', order: 7 }
+			latest: { title: 'Latest', order: 1 },
+			writings: { title: 'Writings', order: 2 },
+			civilization: { title: 'Civilization', order: 3 },
+			'comparative-civilization': { title: 'Comparative Civilization', order: 4 },
+			history: { title: 'History', order: 5 },
+			'karmic-streams': { title: 'Karmic Streams', order: 6 },
+			'sri-aurobindo': { title: 'Sri Aurobindo', order: 7 },
+			'ram-swarup-sita-ram-goel': { title: 'Ram Swarup & Sita Ram Goel', order: 8 }
 		}
 	})
 }).sourceSync();

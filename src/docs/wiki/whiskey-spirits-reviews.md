@@ -41,7 +41,7 @@ Whiskey reviews form a substantial and passionate part of Amrit's writing. The r
 
 ## Indian Single Malts
 
-The essay [Indian Single Malt](/writings/blog/indiansinglemalt) (2014) examines the unique position of Indian whisky — traditionally made from sugarcane molasses and thus not classified as whisky in Europe. Two distilleries produce single malt to Scottish regulations:
+The essay *Indian Single Malt* (2014) examines the unique position of Indian whisky — traditionally made from sugarcane molasses and thus not classified as whisky in Europe. Two distilleries produce single malt to Scottish regulations:
 
 - **Amrut Distillers** (Bangalore) — known for experimental offerings like Amrut Fusion (barley from Scotland and India) and Amrut Kadhambam (triple cask maturation)
 - **Paul Distillery** (Goa) — led by Paul P. John, producing un-chill filtered, un-coloured single malts
@@ -51,26 +51,26 @@ The essay [Indian Single Malt](/writings/blog/indiansinglemalt) (2014) examines 
 The reviews span a wide range of Scotch whisky regions and styles:
 
 ### Islay
-- **Laphroaig** — [10](/writings/blog/whiskeyreviewlaphroaig10), [18](/writings/blog/whiskeyreviewlaphroaig18), [PX](/writings/blog/whiskeyreviewlaphroaigpx), [Quarter Cask](/writings/blog/whiskeyreviewlaphroaigquarter), [Select](/writings/blog/whiskeyreviewlaphroaigselect) — detailed reviews of the iconic peated Islay distillery's range
-- [Port Charlotte](/writings/blog/whiskeyreviewportcharlotte) - heavily peated Islay from Bruichladdich
-- [Smokehead](/writings/blog/whiskeyreviewsmokehead) - aggressive peated Islay malt
+- **Laphroaig** — 10, 18, PX, Quarter Cask, Select — detailed reviews of the iconic peated Islay distillery's range
+- **Port Charlotte** — heavily peated Islay from Bruichladdich
+- **Smokehead** — aggressive peated Islay malt
 
 ### Speyside
-- **Glenlivet** — [12](/writings/blog/whiskeyreviewglenlivet12), [15 Year Old](/writings/blog/whiskeyreviewglenlivet15yo), [Nadurra](/writings/blog/whiskeyreviewglenlivetnadurra) — the classic Speyside distillery
-- [Glenfiddich 12](/writings/blog/whiskeyreviewglenfiddich12) - Speyside's most famous single malt
+- **Glenlivet** — 12, 15 Year Old, Nadurra — the classic Speyside distillery
+- **Glenfiddich 12** — Speyside's most famous single malt
 
 ### Other Regions
-- [Benriach Peated 21](/writings/blog/whiskeyreviewbenriachpeated21) - Speyside peated malt
-- [Tomintoul](/writings/blog/whiskeyreviewtomintoul) - Speyside
-- [Auchentoshan](/writings/blog/whiskeyreviewauchentoshan) - Lowland triple-distilled
-- [Balvenie](/writings/blog/whiskeyreviewbalvenie) - Speyside
-- [William Peel 12](/writings/blog/whiskeyreviewwilliampeel12) - blended Scotch
+- **Benriach Peated 21** — Speyside peated malt
+- **Tomintoul** — Speyside
+- **Auchentoshan** — Lowland triple-distilled
+- **Balvenie** — Speyside
+- **William Peel 12** — blended Scotch
 
 ## Whiskey Culture
 
-[Whiskey or Whisky](/writings/blog/whiskeyorwhisky) explores the spelling debate and the broader culture of whiskey appreciation, while the reviews collectively document a passionate journey into the world of single malts.
+*Whiskey or Whisky* explores the spelling debate and the broader culture of whiskey appreciation, while the reviews collectively document a passionate journey into the world of single malts.
 
 ## See Also
 
-- [Personal Essays, Poetry and Commentary](personal-essays-poetry-commentary) - the broader context of personal writing
-- [Creative Fiction and Worldbuilding](creative-fiction-worldbuilding) - narrative craft, sharing the creative space
+- [Personal Essays, Poetry and Commentary](personal-essays-poetry-commentary) — the broader context of personal writing
+- [Creative Fiction and Worldbuilding](creative-fiction-worldbuilding) — narrative craft, sharing the creative space

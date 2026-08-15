@@ -27,5 +27,5 @@
 {#if data.kind === 'section'}
 	<SectionPage path={data.slug} pathname={page.url.pathname} />
 {:else}
-	<DocumentPage slug={data.slug} pathname={page.url.pathname} />
+	<DocumentPage slug={data.slug} pathname={page.url.pathname} Article={data.component} />
 {/if}

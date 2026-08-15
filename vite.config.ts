@@ -41,6 +41,12 @@ export default defineConfig({
 					onInvalidDocument: 'error-page'
 				})
 			],
+			prerender: {
+				handleHttpError: ({ path, referrer, message }) => {
+					// Ignore 404s on legacy markdown relative links/images during prerender
+					console.warn(`[Prerender Notice] ${message} (${path} linked from ${referrer})`);
+				}
+			},
 			extensions: ['.svelte', '.svx', '.md']
 		}),
 		sveltekitOG()
