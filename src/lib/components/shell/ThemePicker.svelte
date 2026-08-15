@@ -11,7 +11,7 @@
 	import Sun from '$lib/icons/sun.svelte';
 	import Moon from '$lib/icons/moon.svelte';
 
-	let activeTab = $state<'all' | 'light' | 'dark'>('all');
+	let activeTab = $state<'all' | 'light' | 'dark' | 'custom'>('all');
 	let searchFilter = $state<string>('');
 	let pickerEl = $state<HTMLDivElement | null>(null);
 
@@ -45,8 +45,10 @@
 			list = LIGHT_THEMES;
 		} else if (activeTab === 'dark') {
 			list = DARK_THEMES;
+		} else if (activeTab === 'custom') {
+			list = themeState.customThemes;
 		} else {
-			list = THEMES;
+			list = themeState.allThemes;
 		}
 
 		if (!searchFilter.trim()) return list;
@@ -120,38 +122,50 @@
 					</button>
 				</div>
 
-				<button
-					type="button"
-					class="theme-icon-btn"
-					aria-label="Close theme menu"
-					onclick={() => themeState.closePicker()}
-				>
-					<svg
-						viewBox="0 0 24 24"
-						width="14"
-						height="14"
-						fill="none"
-						stroke="currentColor"
-						stroke-width="2"
-						stroke-linecap="round"
-						stroke-linejoin="round"
+				<div class="row gap6 ycenter">
+					<a
+						href="/studio"
+						class="theme-tab-btn"
+						style="text-decoration: none; font-weight: 600; color: var(--theme-color);"
+						onclick={() => themeState.closePicker()}
+						title="Open interactive Theme & Aura Studio"
 					>
-						<path d="M18 6 6 18" />
-						<path d="m6 6 12 12" />
-					</svg>
-				</button>
+						🎨 Studio
+					</a>
+
+					<button
+						type="button"
+						class="theme-icon-btn"
+						aria-label="Close theme menu"
+						onclick={() => themeState.closePicker()}
+					>
+						<svg
+							viewBox="0 0 24 24"
+							width="14"
+							height="14"
+							fill="none"
+							stroke="currentColor"
+							stroke-width="2"
+							stroke-linecap="round"
+							stroke-linejoin="round"
+						>
+							<path d="M18 6 6 18" />
+							<path d="m6 6 12 12" />
+						</svg>
+					</button>
+				</div>
 			</div>
 
 			<!-- Filter Tabs -->
 			<div class="theme-tabs row xbetween">
-				<div class="row gap8 ycenter">
+				<div class="row gap8 ycenter wrap">
 					<button
 						type="button"
 						class="theme-tab-btn"
 						class:active={activeTab === 'all'}
 						onclick={() => (activeTab = 'all')}
 					>
-						All ({THEMES.length})
+						All ({themeState.allThemes.length})
 					</button>
 					<button
 						type="button"
@@ -169,6 +183,16 @@
 					>
 						Dark ({DARK_THEMES.length})
 					</button>
+					{#if themeState.customThemes.length > 0}
+						<button
+							type="button"
+							class="theme-tab-btn"
+							class:active={activeTab === 'custom'}
+							onclick={() => (activeTab = 'custom')}
+						>
+							Custom ({themeState.customThemes.length})
+						</button>
+					{/if}
 					<button
 						type="button"
 						class="theme-tab-btn"

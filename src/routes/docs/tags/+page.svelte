@@ -67,13 +67,10 @@
 	</div>
 	<!-- Same `.card` primitive and grid as the section pages. Each card is one tag; the
 	     muted line is its document count. -->
-	<div class="grid grid-cols-auto gap16">
+	<div class="row wrap gap16">
 		{#each sortedTags as { tag, href, count } (tag)}
-			<a class="card blank box gap8" {href}>
-				<span class="text-bs card-title">{tag}</span>
-				<span class="text-sm text-muted">
-					{count}
-				</span>
+			<a class="card pill blank box gap8" {href}>
+				<span class="text-md card-title">{tag} ({count})</span>
 			</a>
 		{/each}
 	</div>

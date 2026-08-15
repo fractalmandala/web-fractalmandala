@@ -75,8 +75,8 @@
 			{#each sections[activeIndex].items as item (item.id)}
 				{@const tags = docTags(item.href)}
 				<a class="card blank box gap8" href={item.href}>
-					<span class="text-lg card-title">{item.title}</span>
-					<span class="text-md text-muted">{item.description}</span>
+					<span class="text-lg fw500 card-title">{item.title}</span>
+					<span class="text- text-muted">{item.description}</span>
 					{#if tags.length}
 						<div class="row wrap gap4">
 							{#each tags as tag}
