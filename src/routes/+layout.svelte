@@ -8,7 +8,7 @@
 	import AuraBackground from '$lib/components/shell/AuraBackground.svelte';
 	import SearchModal from '$lib/components/search/SearchModal.svelte';
 	import { menuState, closeMenuState } from '$lib/utils/menustate';
-	import { searchOpen, toggleSearch, openSearch } from '$lib/utils/searchstate';
+	import { searchState, toggleSearch, openSearch } from '$lib/utils/searchstate';
 	import { themeState } from '$lib/utils/theme.svelte';
 	import Nav from '$lib/docs/Nav.svelte';
 	import Search from '$lib/icons/search.svelte';
@@ -19,7 +19,7 @@
 		themeState.init();
 
 		function handleResize() {
-			if (window.innerWidth > 1024 && $menuState) {
+			if (window.innerWidth >= 1024 && menuState.open) {
 				closeMenuState();
 			}
 		}
@@ -40,7 +40,7 @@
 			toggleSearch();
 			return;
 		}
-		if (e.key === '/' && !$searchOpen) {
+		if (e.key === '/' && !searchState.open) {
 			const active = document.activeElement;
 			const isInput =
 				active instanceof HTMLInputElement ||
@@ -53,25 +53,27 @@
 		}
 	}
 
-	// Lock body scroll when mobile menu is open (<= 1024px)
+	// Lock body scroll when mobile menu is open (< 1024px)
 	$effect(() => {
 		if (browser) {
-			if ($menuState && window.innerWidth <= 1024) {
+			if (menuState.open && window.innerWidth < 1024) {
 				document.documentElement.style.overflow = 'hidden';
 				document.body.style.overflow = 'hidden';
-			} else if (!$searchOpen) {
+			} else if (!searchState.open) {
 				document.documentElement.style.removeProperty('overflow');
 				document.body.style.removeProperty('overflow');
 			}
 		}
 	});
 
-	// Close menu on client-side navigation
+	// Close menu only when URL actually changes
+	let lastPath = $state('');
 	$effect(() => {
-		const _ = page.url.pathname;
-		if (browser && $menuState) {
+		const currentPath = page.url.pathname;
+		if (lastPath && lastPath !== currentPath) {
 			closeMenuState();
 		}
+		lastPath = currentPath;
 	});
 
 	// Close menu only when clicking an <a> tag (not <summary> or <details> accordion)
@@ -96,7 +98,7 @@
 	<main class="inwrapper bodywrapper">
 		{@render children()}
 	</main>
-	{#if $menuState}
+	{#if menuState.open}
 		<!-- svelte-ignore a11y_click_events_have_key_events -->
 		<!-- svelte-ignore a11y_no_noninteractive_element_interactions -->
 		<aside class="mobile-menu box gap16" onclick={handleMenuClick} data-pagefind-ignore>

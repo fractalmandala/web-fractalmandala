@@ -2,11 +2,11 @@
 .search-backdrop
 	position: fixed
 	inset: 0
-	z-index: var(--z-modal, 200)
+	z-index: 9999
 	display: flex
 	align-items: flex-start
 	justify-content: center
-	padding: 10vh 16px 24px
+	padding: 16px
 	background: rgba(0, 0, 0, 0.5)
 	backdrop-filter: blur(6px)
 	-webkit-backdrop-filter: blur(6px)
@@ -44,6 +44,12 @@
 	color: var(--text-primary)
 	&::placeholder
 		color: var(--text-muted)
+	&::-webkit-search-cancel-button,
+	&::-webkit-search-decoration,
+	&::-webkit-search-results-button,
+	&::-webkit-search-results-decoration
+		-webkit-appearance: none
+		display: none
 
 .search-spinner
 	width: 16px
@@ -67,16 +73,40 @@
 		color: var(--text-primary)
 		background: var(--bg-raised)
 
-.search-kbd
-	padding: 2px 6px
-	font-family: var(--font-mono)
-	font-size: var(--text-xs, 10px)
-	font-weight: 600
+.search-close-btn
+	display: inline-flex
+	align-items: center
+	justify-content: center
+	padding: 3px 8px
 	border: 1px solid var(--border)
 	border-radius: var(--radius-4, 4px)
 	background: var(--bg-raised)
 	color: var(--text-secondary)
 	cursor: pointer
+	transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease
+
+	&:hover
+		color: var(--text-primary)
+		border-color: var(--border-hover, var(--border))
+		background: var(--state-hover)
+
+	.search-close-icon
+		display: none
+	.search-esc-badge
+		display: inline-block
+		font-family: var(--font-mono)
+		font-size: var(--text-xs, 10px)
+		font-weight: 600
+
+	@media (max-width: 767px)
+		padding: 6px
+		border-radius: 50%
+		.search-esc-badge
+			display: none
+		.search-close-icon
+			display: flex
+			align-items: center
+			justify-content: center
 
 .search-filters-bar
 	padding: 8px 16px

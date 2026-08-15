@@ -212,9 +212,50 @@ export function openIds(pathname: string): string[] {
 }
 
 /**
- * On-page TOC. Acrolls scans the *rendered* DOM rather than the source, so call this
- * after the article has mounted (in an $effect), not during load.
+ * On-page TOC. Scans the rendered DOM subtree for h2–h4 headings and ensures valid anchor IDs.
  */
-export function tocFrom(root: ParentNode, minLevel = 2, maxLevel = 3): DocsTocItem[] {
-	return scanHeadings({ root, minLevel, maxLevel, ensureIds: true });
+export function tocFrom(root: ParentNode, minLevel = 2, maxLevel = 4): DocsTocItem[] {
+	if (!root) return [];
+	const items: DocsTocItem[] = [];
+	const selector = Array.from({ length: maxLevel - minLevel + 1 }, (_, i) => `h${minLevel + i}`).join(',');
+	const headings = root.querySelectorAll(selector);
+	const used = new Set<string>();
+
+	headings.forEach((el, index) => {
+		const tag = el.tagName.toLowerCase();
+		const level = Number(tag.replace('h', ''));
+		if (!Number.isFinite(level)) return;
+
+		let text = (el.textContent || '').replace(/\s+/g, ' ').trim();
+		if (!text) return;
+
+		let id = (el as HTMLElement).id;
+		if (!id) {
+			const anchor = el.querySelector('a[id], a[name]');
+			if (anchor) {
+				id = anchor.id || anchor.getAttribute('name') || '';
+			}
+		}
+		if (!id) {
+			id = text
+				.toLowerCase()
+				.replace(/[^\w\s-]/g, '')
+				.replace(/\s+/g, '-');
+		}
+		if (!id) {
+			id = `section-${index + 1}`;
+		}
+		if (used.has(id)) {
+			let counter = 2;
+			while (used.has(`${id}-${counter}`)) {
+				counter++;
+			}
+			id = `${id}-${counter}`;
+		}
+		used.add(id);
+		(el as HTMLElement).id = id;
+		items.push({ id, text, level });
+	});
+
+	return items;
 }

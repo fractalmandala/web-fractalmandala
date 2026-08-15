@@ -2,24 +2,18 @@
 	import type { Snippet } from 'svelte';
 	import { page } from '$app/state';
 	import Nav from '$lib/docs/Nav.svelte';
-	import { site, docSections } from '$lib/docs/content';
-	import Toc from '$lib/docs/Toc.svelte';
+	import { docSections } from '$lib/docs/content';
 	import '$lib/styles/docsshell.sass';
-	import type { DocsTocItem } from '$lib/docs/content';
 
-	// No Acrolls components and no Acrolls CSS are imported anywhere in this surface.
-	// Acrolls is used purely as the content engine; this shell is ours.
 	let { children }: { children: Snippet } = $props();
-	let tocItems = $state<DocsTocItem[]>([]);
+
 	// Sidebar only on actual document pages. The /docs index and the derived section
 	// pages are browse surfaces and get the full width. `kind` comes from the catch-all
-	// route's load; the /docs index has no load, so it is undefined there — which is the
-	// wanted result.
+	// route's load.
 	const showSidebar = $derived((page.data as { kind?: string }).kind === 'document');
 
-	// Browse surfaces get the full width with no shell wrapper: the /docs index, every
-	// section landing page (/docs/history, /docs/writings, …), and the tag browse pages
-	// (/docs/tags and /docs/tags/<tag>).
+	// Browse surfaces get full-width container layout: /docs, /docs/tags, /docs/tags/<tag>,
+	// and section landing pages (/docs/writings, /docs/history, …).
 	const sectionLandings = new Set(docSections.map((s) => s.href));
 	const isBrowseSurface = $derived(
 		page.url.pathname === '/docs' ||
@@ -30,11 +24,13 @@
 </script>
 
 {#if isBrowseSurface}
-	{@render children()}
+	<div class="pagebox">
+		{@render children()}
+	</div>
 {:else}
-	<div class="appbody" class:has-sidebar={showSidebar}>
+	<div class="blume-body" class:has-sidebar={showSidebar}>
 		{#if showSidebar}
-			<aside class="sidebarleft box gap16">
+			<aside class="sidebar box gap16" data-pagefind-ignore>
 				<Nav pathname={page.url.pathname} />
 			</aside>
 		{/if}

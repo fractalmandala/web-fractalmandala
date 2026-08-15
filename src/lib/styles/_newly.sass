@@ -258,6 +258,8 @@
 	font-size: 12px
 	text-transform: uppercase
 	display: flex
+	flex-direction: row
+	flex-wrap: wrap
 	gap: 4px
 	color: var(--text-muted)
 	a
@@ -321,8 +323,9 @@
 	padding-bottom: 32px
 	border-bottom: 1px solid var(--border)
 	h1
-		font-size: var(--text-2xl)
-		font-weight: 500
+		font-size: var(--text-3xl)
+		font-weight: 600
+		line-height: 1.2
 	p
 		color: var(--text-secondary)
 
@@ -352,7 +355,7 @@
 	padding: 24px 16px 80px 16px
 	box-sizing: border-box
 
-	@media (min-width: 1025px)
+	@media (min-width: 1024px)
 		display: none !important
 
 	a.top-link
@@ -382,5 +385,5 @@
 		&:hover
 			color: var(--theme-color)
 			background: var(--bg-panel)
-	@media (max-width: 1024px)
+	@media (max-width: 1023px)
 		display: none

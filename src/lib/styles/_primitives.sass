@@ -183,21 +183,23 @@ a.card:hover
 	display: inline-flex
 	align-items: center
 	padding: 2px 8px
-	font-size: var(--text-xs)
-	font-weight: 500
+	font-size: var(--text-sm)
 	border-radius: 4px
 	background: var(--bg-panel)
-	color: var(--text-secondary)
+	color: var(--text-primary)
 	text-decoration: none
 
 a.card
 	.badge
-		color: var(--text-secondary)
+		color: var(--text-primary)
 
 a.badge
-	color: var(--text-secondary)
+	color: var(--text-primary)
+	text-decoration: none
+	background: var(--bg-panel)
 	&:hover
 		color: var(--text-primary)
+		background: var(--bg-raised)
 
 .avatar
 	display: inline-flex

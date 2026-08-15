@@ -26,32 +26,54 @@
 	let articleEl = $state<HTMLElement>();
 	let tocItems = $state<DocsTocItem[]>([]);
 
-	// Acrolls builds the TOC by scanning rendered headings, so wait for the body to be
-	// in the DOM. Levels 2–3 only.
+	// Scan rendered headings for Table of Contents (levels 2–4)
 	$effect(() => {
-		if (!articleEl) return;
-		const _ = slug;
+		const el = articleEl;
+		const _slug = slug;
+		const _art = Article;
+
+		if (el) {
+			const scanned = tocFrom(el, 2, 4);
+			if (scanned.length > 0) {
+				tocItems = scanned;
+			}
+		}
+
 		let cancelled = false;
 		tick().then(() => {
 			if (!cancelled && articleEl) {
-				tocItems = tocFrom(articleEl, 2, 3);
+				const scanned = tocFrom(articleEl, 2, 4);
+				if (scanned.length > 0) {
+					tocItems = scanned;
+				}
 			}
 		});
+
+		const timer = setTimeout(() => {
+			if (!cancelled && articleEl) {
+				const scanned = tocFrom(articleEl, 2, 4);
+				if (scanned.length > 0) {
+					tocItems = scanned;
+				}
+			}
+		}, 100);
+
 		return () => {
 			cancelled = true;
+			clearTimeout(timer);
 		};
 	});
 </script>
 
 {#if doc}
-	<div class="bodymain">
+	<main class="content-wrapper">
 		<!--
 				The compiled document. No PublicationLayout wrapper: content comes through
 				bare, with Acrolls' compile-time work intact (heading ids/anchors, Shiki
 				code frames, wrapped tables). `.doc-body` is ours to style.
 			-->
 		<div
-			class="acrolls-post box gap32 padtop32 padbot32"
+			class="fitted box gap32 padbot32"
 			data-pagefind-body
 			data-pagefind-filter={`section:${sectionName}`}
 		>
@@ -67,21 +89,23 @@
 					{/each}
 				</nav>
 				<div class="box gap16">
-					<h1 data-pagefind-meta="title">{doc.title}</h1>
+					<h1 data-pagefind-meta="title" class="post-title">{doc.title}</h1>
 					{#if doc.description}
 						<p class="doc-description" data-pagefind-meta="description">{doc.description}</p>
 					{/if}
 					{#if tags.length}
 						<div class="row wrap gap4">
 							{#each tags as tag}
-								<a class="badge" href={tagHref(tag)} data-pagefind-filter="tag">{tag}</a>
+								<a class="badge" href={tagHref(tag)} data-pagefind-filter="tag"
+									>{tag.replaceAll('-', ' ')}</a
+								>
 							{/each}
 						</div>
 					{/if}
 				</div>
 			</div>
 			{#if Article}
-				<article bind:this={articleEl}>
+				<article class="markdown-body" bind:this={articleEl}>
 					<Article />
 				</article>
 			{:else}
@@ -96,8 +120,8 @@
 				</nav>
 			{/if}
 		</div>
-	</div>
-	<aside class="sidebarright" data-pagefind-ignore>
+	</main>
+	<aside class="toc-sidebar" data-pagefind-ignore>
 		<Toc items={tocItems} />
 	</aside>
 {:else}

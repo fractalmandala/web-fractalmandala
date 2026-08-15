@@ -2,13 +2,14 @@
 	import { tick } from 'svelte';
 	import { goto } from '$app/navigation';
 	import { browser } from '$app/environment';
-	import { searchOpen, closeSearch } from '$lib/utils/searchstate';
+	import { searchState, closeSearch } from '$lib/utils/searchstate';
 	import { searchPagefind, type SearchResultItem } from '$lib/search/pagefind';
 	import SearchIcon from '$lib/icons/search.svelte';
 	import CloseIcon from '$lib/icons/close.svelte';
 
 	const SECTIONS = [
 		{ id: 'all', label: 'All' },
+		{ id: 'Latest', label: 'Latest' },
 		{ id: 'Writings', label: 'Writings' },
 		{ id: 'Civilization', label: 'Civilization' },
 		{ id: 'Comparative Civilization', label: 'Comparative Civ' },
@@ -41,7 +42,7 @@
 
 	// Reset & focus input whenever modal opens
 	$effect(() => {
-		if ($searchOpen) {
+		if (searchState.open) {
 			query = '';
 			results = [];
 			totalCount = 0;
@@ -55,7 +56,7 @@
 	// Lock body scroll when modal is open
 	$effect(() => {
 		if (!browser) return;
-		if ($searchOpen) {
+		if (searchState.open) {
 			const originalOverflow = document.body.style.overflow;
 			document.body.style.overflow = 'hidden';
 			return () => {
@@ -116,7 +117,7 @@
 	}
 
 	function handleKeydown(event: KeyboardEvent) {
-		if (!$searchOpen) return;
+		if (!searchState.open) return;
 
 		if (event.key === 'Escape') {
 			event.preventDefault();
@@ -158,8 +159,9 @@
 
 <svelte:window onkeydown={handleKeydown} />
 
-{#if $searchOpen}
+{#if searchState.open}
 	<!-- svelte-ignore a11y_click_events_have_key_events -->
+	<!-- svelte-ignore a11y_interactive_supports_focus -->
 	<div
 		class="search-backdrop"
 		onclick={handleBackdropClick}
@@ -175,7 +177,8 @@
 				</span>
 				<input
 					bind:this={inputEl}
-					type="search"
+					type="text"
+					inputmode="search"
 					class="search-input"
 					placeholder="Search 300+ articles, topics, keywords..."
 					bind:value={query}
@@ -200,8 +203,15 @@
 						<CloseIcon />
 					</button>
 				{/if}
-				<button type="button" class="search-kbd" onclick={closeSearch} title="Close search (ESC)">
-					ESC
+				<button
+					type="button"
+					class="search-close-btn"
+					onclick={closeSearch}
+					title="Close search"
+					aria-label="Close search"
+				>
+					<span class="search-esc-badge">ESC</span>
+					<span class="search-close-icon"><CloseIcon /></span>
 				</button>
 			</div>
 

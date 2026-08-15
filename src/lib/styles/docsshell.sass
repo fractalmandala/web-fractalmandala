@@ -1,264 +1,178 @@
-// CUBE · Composition layer
-// ----------------------------------------------------------------------
-// Named, token-driven layout skeletons. These describe *arrangement* only
-// (the C in CUBE) — no colours, no component detail. Utilities and blocks
-// layer on top. Exceptions are expressed with data-* / aria-* attributes,
-// never with BEM modifiers.
-//
-//   1. App shell — the canonical page + docs layout
-//   2. Layout primitives — stack / cluster / sidebar / reel
-//   3. Content compositions — container / card-grid / prose
-//   4. Ambient background — decorative, theme-aware blobs
-// ----------------------------------------------------------------------
+// ======================================================================
+// Blume Documentation Layout & Styling System
+// ======================================================================
+// Breakpoints:
+//   $bp-lg: 1024px  (Mobile/Tablet Drawer -> 2-Column Mode: Nav + Content)
+//   $bp-xl: 1280px  (Desktop 3-Column Mode: 360px Nav + 760px Article + 240px TOC)
+// ======================================================================
 
-// 1. App shell ---------------------------------------------------------
-// section.appshell > header.appheader + main.appbody + footer.appfooter
-// main.appbody > aside.sidebarleft + article.bodymain + aside.sidebarright
+$bp-md: 768px
+$bp-lg: 1024px
+$bp-xl: 1280px
 
-.appshell
+$sidebar-mobile-w: min(86vw, 280px)
+$sidebar-tablet-w: 280px
+$sidebar-desktop-w: 280px
+$toc-desktop-w: 240px
+$reading-measure: 760px
+
+// 1. Blume Root Shell --------------------------------------------------
+.blume-root
 	position: relative
 	isolation: isolate
 	display: flex
 	flex-direction: column
 	min-height: 100vh
-	background-color: var(--bg-app)
-	background-image: var(--page-glow)
-	background-repeat: no-repeat
+	background-color: var(--bg)
 	color: var(--text-primary)
 
-.appheader
-	position: sticky
-	top: 0
-	z-index: 50
-	display: flex
-	align-items: center
-	height: var(--header-height)
-	padding-inline: var(--shell-pad, 20px)
-	border-bottom: 1px solid var(--border)
-	background: color-mix(in srgb, var(--bg-app) 80%, transparent)
-	backdrop-filter: blur(10px)
-	-webkit-backdrop-filter: blur(10px)
-
-.appbody
-	position: relative
-	display: grid
-	grid-template-columns: 1fr
-	min-height: calc(100vh - var(--header-height))
-
-.appfooter
-	display: flex
-	align-items: center
-	min-height: var(--footer-height)
-	padding-inline: var(--shell-pad, 20px)
-	border-top: 1px solid var(--border)
-	background: var(--bg-app)
-
-// Middle reading column. In the canonical markup <article class="bodymain">
-// IS the middle cell; its content is constrained to a comfortable measure
-// that grows from --body-min to --body-max and stays centred.
-.bodymain
-	min-width: 0
+// 2. Blume Body Layout Container ---------------------------------------
+.blume-body
 	display: flex
 	flex-direction: column
-	> *
-		width: 100%
-		max-width: clamp(var(--body-min, 600px), 58vw, var(--body-max, 720px))
-		margin-inline: auto
-	@media (min-width: 1025px)
-		padding-block: 32px
-		padding-inline: var(--shell-pad, 20px)
+	width: 100%
+	flex: 1
+	min-height: calc(100vh - var(--header-height, 56px))
+	position: relative
 
-// Wide variant: the middle cell runs to --layout-max instead of a measure.
-// Used by index / dashboard pages where cards want the full width.
-.bodymain[data-width="wide"]
-	> *
-		max-width: var(--layout-max)
-
-// Sidebars. Mobile-first: left becomes an off-canvas drawer, right is hidden
-// (docs TOC is desktop-only by default). Exception state = [data-mobile-open].
-.sidebarleft, .sidebarright
-	min-width: 0
-
-.sidebarleft
-	position: fixed
-	top: var(--header-height)
-	left: 0
-	z-index: 60
-	width: min(86vw, 360px)
-	height: calc(100dvh - var(--header-height))
-	padding: 20px
-	overflow-y: auto
-	background: var(--bg-app)
-	border-right: 1px solid var(--border)
-	transform: translateX(-102%)
-	transition: transform var(--dur-slow, 260ms) var(--ease-std)
-
-.appbody[data-mobile-open="true"] .sidebarleft
-	transform: translateX(0)
-
-.sidebarright
+// 3. Left Navigation Sidebar -------------------------------------------
+// Hidden on mobile/tablet (< 1024px); global .mobile-menu handles mobile navigation
+.sidebar
 	display: none
 
-// Backdrop for the mobile drawer (rendered element, click-to-close)
-.appbody-backdrop
-	position: fixed
-	inset: var(--header-height) 0 0 0
-	z-index: 55
-	border: 0
-	background: var(--bg-overlay)
+// 4. Center Content Wrapper --------------------------------------------
+.content-wrapper
+	flex: 1
+	min-width: 0
+	width: 100%
+	padding: 24px 16px 64px
+	display: flex
+	flex-direction: column
+	align-items: center
 
-@media (min-width: 1025px)
-	// sidebars grow 200px → --sidebar-max; middle takes the rest
-	.appbody
-		--shell-cols: clamp(var(--sidebar-min, 200px), 20vw, var(--sidebar-max, 360px))
-		grid-template-columns: var(--shell-cols) minmax(0, 1fr) var(--shell-cols)
-	// Column variants when a rail is absent (Exception, expressed as state)
-	.appbody.no-left
-		grid-template-columns: minmax(0, 1fr) var(--shell-cols)
-	.appbody.no-right
-		grid-template-columns: var(--shell-cols) minmax(0, 1fr)
-	.appbody.no-both
-		grid-template-columns: minmax(0, 1fr)
-	.sidebarleft, .sidebarright
+	// Constant reading measure across all viewports (never contracts on resize)
+	.fitted
+		width: 100%
+		max-width: $reading-measure
+		margin-inline: auto
+
+// Wide mode (e.g. index cards and tag browse overviews)
+.content-wrapper[data-width="wide"]
+	.fitted
+		max-width: var(--layout-max, 1600px)
+
+// 5. Right Table of Contents Sidebar -----------------------------------
+// Hidden by default on screens < 1280px
+.toc-sidebar
+	display: none
+
+// ======================================================================
+// 2-Column Mode (1024px - 1279px) -> 320px Sticky Left Nav + 760px Article
+// ======================================================================
+@media (min-width: 1024px)
+	.blume-body
+		flex-direction: row
+		width: 100%
+	.sidebar
+		display: flex
+		flex-direction: column
 		position: sticky
-		top: var(--header-height)
-		width: auto
-		height: calc(100vh - var(--header-height))
-		overflow-y: auto
-		z-index: auto
+		top: var(--header-height, 56px)
+		height: calc(100vh - var(--header-height, 56px))
+		width: $sidebar-tablet-w
+		flex-shrink: 0
 		transform: none
 		background: transparent
-	.sidebarleft
+		border-right: 1px solid var(--border-subtle, var(--border))
 		padding: 32px 20px
-		border-right: 1px solid var(--border-subtle)
-	.sidebarright
-		display: block
-		padding: 32px 20px 32px 64px
-	.appbody-backdrop
+		z-index: 10
+		overflow-y: auto
+		scrollbar-width: thin
+	.content-wrapper
+		padding: 32px
+	.toc-sidebar
 		display: none
 
-// Thin, quiet scrollbars for the sticky rails
-.sidebarleft, .sidebarright
+// ======================================================================
+// 3-Column Mode (>= 1280px) -> 360px Left Nav + 760px Article + 240px TOC
+// ======================================================================
+@media (min-width: 1280px)
+	.sidebar
+		width: $sidebar-desktop-w
+		padding: 32px 24px
+	.content-wrapper
+		padding: 32px 16px
+		.fitted
+			max-width: 68ch
+	.toc-sidebar
+		display: flex
+		flex-direction: column
+		position: sticky
+		top: var(--header-height, 56px)
+		height: calc(100vh - var(--header-height, 56px))
+		width: $toc-desktop-w
+		flex-shrink: 0
+		padding: 36px 20px
+		overflow-y: auto
+		scrollbar-width: thin
+		nav
+			.toc-title
+				font-size: var(--text-xs, 0.75rem)
+				font-weight: 600
+				text-transform: uppercase
+				letter-spacing: 0.05em
+				color: var(--text-muted)
+				margin-bottom: 12px
+			.toc-link
+				font-size: var(--text-sm, 0.875rem)
+				line-height: 1.45
+				color: var(--text-secondary)
+				text-decoration: none
+				transition: color 0.15s ease
+				display: block
+				&:hover
+					color: var(--theme-color, var(--theme))
+				&[data-level="3"]
+					padding-inline-start: 12px
+					font-size: var(--text-xs, 0.8rem)
+					color: var(--text-muted)
+					&:hover
+						color: var(--theme-color, var(--theme))
+				&[data-level="4"]
+					padding-inline-start: 20px
+					font-size: var(--text-xs, 0.75rem)
+					color: var(--text-muted)
+					&:hover
+						color: var(--theme-color, var(--theme))
+
+// Scrollbars for sticky rails
+.sidebar, .toc-sidebar
 	scrollbar-width: thin
 	&::-webkit-scrollbar
-		width: 6px
+		width: 5px
 	&::-webkit-scrollbar-thumb
-		background-color: var(--border-secondary)
+		background-color: var(--border)
 		border-radius: 9999px
 	&::-webkit-scrollbar-track
 		background-color: transparent
 
-// 2. Layout primitives -------------------------------------------------
-// Classic composition utilities — reusable everywhere, framework-free.
-
-// Vertical rhythm: owl selector, gap via --stack-gap
-.stack
-	display: flex
-	flex-direction: column
-	> * + *
-		margin-block-start: var(--stack-gap, 16px)
-
-// Wrapping row of items with a shared gap
-.cluster
-	display: flex
-	flex-wrap: wrap
-	gap: var(--cluster-gap, 12px)
-	align-items: center
-
-// Intrinsic sidebar: fixed-ish rail beside a fluid main, wraps when tight
-.with-sidebar
-	display: flex
-	flex-wrap: wrap
-	gap: var(--sidebar-gap, 24px)
-	> .rail
-		flex-basis: var(--rail-width, 240px)
-		flex-grow: 1
-	> .flow
-		flex-basis: 0
-		flex-grow: 999
-		min-width: var(--flow-min, 60%)
-
-// Horizontal overflow scroller
-.reel
-	display: flex
-	gap: var(--reel-gap, 16px)
-	overflow-x: auto
-	overscroll-behavior-inline: contain
-	scroll-snap-type: inline mandatory
-	> *
-		scroll-snap-align: start
-		flex: 0 0 auto
-
-// 3. Content compositions ----------------------------------------------
-
-// Centred max-width wrapper for full-bleed sections
-.container
-	width: 100%
-	max-width: var(--layout-max)
-	margin-inline: auto
-	padding-inline: var(--shell-pad, 20px)
-
-// Auto-fitting card grid. Column floor via --card-min.
-.card-grid
-	display: grid
-	gap: var(--card-gap, 20px)
-	grid-template-columns: repeat(auto-fill, minmax(min(100%, var(--card-min, 280px)), 1fr))
-
-// The first card can span the full row on wide viewports (featured post)
-.card-grid > [data-span="full"]
-	grid-column: 1 / -1
-
-// Long-form measure and vertical rhythm for markdown / mdsvex output
-.prose
-	max-width: 100%
-	font-size: var(--text-bs)
-	line-height: 1.7
-	color: var(--text-secondary)
-	> * + *
-		margin-block-start: 1em
-	h1, h2, h3, h4
-		color: var(--text-primary)
-		line-height: 1.2
-		letter-spacing: -0.015em
-		text-wrap: balance
-	h2
-		margin-block-start: 2em
-		font-size: var(--text-xl)
-	h3
-		margin-block-start: 1.6em
-		font-size: var(--text-lg)
-	p
-		text-wrap: pretty
-	a
-		color: var(--brand)
-		text-decoration: underline
-		text-underline-offset: 2px
-		&:hover
-			color: var(--brand-hover)
+.fitted
 	code
 		font-family: var(--font-mono)
 		font-size: 0.875em
 		padding: 0.15em 0.4em
-		border-radius: var(--radius-4)
+		border-radius: var(--radius-4, 4px)
 		background: var(--bg-raised)
 		color: var(--text-primary)
 	pre
 		padding: 16px
 		overflow-x: auto
 		border: 1px solid var(--border)
-		border-radius: var(--radius-8)
+		border-radius: var(--radius-8, 8px)
 		background: var(--bg-surface)
 		code
 			padding: 0
 			background: none
-	blockquote
-		padding-inline-start: 16px
-		border-inline-start: 2px solid var(--brand)
-		color: var(--text-muted)
-	ul, ol
-		padding-inline-start: 1.25em
-	li + li
-		margin-block-start: 0.4em
 	hr
 		height: 1px
 		border: 0
@@ -266,44 +180,4 @@
 		margin-block: 2.5em
 	img
 		max-width: 100%
-		border-radius: var(--radius-8)
-
-// 4. Ambient background ------------------------------------------------
-// Decorative, theme-aware colour wash. Sits behind app content at -1.
-// Colours + per-blob opacity come from tokens (themed light/dark).
-
-.ambient
-	position: absolute
-	inset: 0
-	z-index: -1
-	overflow: hidden
-	pointer-events: none
-
-.ambient-blob
-	position: absolute
-	border-radius: 9999px
-	filter: blur(var(--ambient-blur, 60px))
-
-.ambient-blob-1
-	width: 60vh
-	height: 60vh
-	top: -8rem
-	left: -8rem
-	background: var(--ambient-1-bg)
-	opacity: var(--ambient-1-op)
-
-.ambient-blob-2
-	width: 50vh
-	height: 40vh
-	right: 2.5rem
-	bottom: -5rem
-	background: var(--ambient-2-bg)
-	opacity: var(--ambient-2-op)
-
-.ambient-blob-3
-	width: 45vh
-	height: 35vh
-	top: 7rem
-	left: 25%
-	background: var(--ambient-3-bg)
-	opacity: var(--ambient-3-op)
+		border-radius: var(--radius-8, 8px)

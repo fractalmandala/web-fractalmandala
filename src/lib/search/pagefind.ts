@@ -94,8 +94,10 @@ export async function getPagefind(): Promise<PagefindInstance | null> {
 
 	initPromise = (async () => {
 		try {
-			// Dynamically import the static pagefind bundle generated at build time
-			const pf = (await import(/* @vite-ignore */ '/pagefind/pagefind.js')) as PagefindInstance;
+			// Dynamically import the static pagefind bundle at runtime in the browser
+			const pagefindUrl = '/pagefind/pagefind.js';
+			const dynamicImport = new Function('url', 'return import(url)');
+			const pf = (await dynamicImport(pagefindUrl)) as PagefindInstance;
 			if (pf?.init) {
 				await pf.init();
 			}

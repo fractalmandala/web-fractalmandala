@@ -32,7 +32,12 @@
 				<a href="/docs/tags">TAGS</a>
 				<a href="/studio">STUDIO</a>
 			</div>
-			<button class="header-search-btn" onclick={openSearch} aria-label="Search (⌘K)">
+			<button
+				type="button"
+				class="header-search-btn"
+				onclick={() => openSearch()}
+				aria-label="Search (⌘K)"
+			>
 				<Search size={15} />
 				<span>Search</span>
 				<kbd>⌘K</kbd>
@@ -49,8 +54,13 @@
 			<a class="button-icon" href="https://x.com/saamaanyafreaky" target="_blank" rel="noreferrer">
 				<Twitter />
 			</a>
-			<button class="button-icon button-menu" onclick={toggleMenuState}>
-				{#if $menuState}
+			<button
+				type="button"
+				class="button-icon button-menu"
+				onclick={toggleMenuState}
+				aria-label="Toggle navigation menu"
+			>
+				{#if menuState.open}
 					<Close />
 				{:else}
 					<Menu />
