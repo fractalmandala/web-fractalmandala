@@ -1,0 +1,142 @@
+// Mode marker contract — see docs/09-mode-and-theme.md
+//   [data-mode='light'|'dark']  the OS-backed binary axis (set on <html>)
+//   [data-theme='<name>']       named palettes, orthogonal to mode
+// `[data-theme='light'|'dark']` and `.light`/`.dark` are DEPRECATED aliases for the
+// mode axis, retained for compatibility and removed in 3.0.
+
+:root
+	// Tell the browser which mode it is painting, so scrollbars, form controls and
+	// the default canvas match. Overridden alongside the palette in each mode block.
+	color-scheme: light
+
+	// Fonts
+	--font-sans: "Funnel Sans", sans-serif
+	--font-mono: "JetBrains Mono", monospace
+
+	// Fluid type scale — Utopia 360→1240, 18px@1.2→20px@1.25
+	--text-xs: 0.7rem
+	--text-sm: 0.825rem
+	--text-md: 1rem
+	--text-bs: clamp(1.125rem, 1.125rem + 0vw, 1.125rem)
+	--text-lg: clamp(1.4063rem, 1.3681rem + 0.1698vw, 1.4996rem)
+	--text-xl: clamp(1.7578rem, 1.6591rem + 0.4385vw, 1.999rem)
+	--text-2xl: clamp(2.1973rem, 2.0061rem + 0.8498vw, 2.6647rem)
+	--text-3xl: clamp(2.7466rem, 2.4171rem + 1.4644vw, 3.552rem)
+	--text-4xl: clamp(3.4332rem, 2.9008rem + 2.3665vw, 4.7348rem)
+	--text-5xl: clamp(4.2915rem, 3.4652rem + 3.6727vw, 6.3115rem)
+
+	// Fluid space scale — t-shirt naming, 360→1240 viewport
+	--space-3xs: clamp(0.3125rem, 0.3125rem + 0vw, 0.3125rem)
+	--space-2xs: clamp(0.5625rem, 0.5369rem + 0.1136vw, 0.625rem)
+	--space-xs: clamp(0.875rem, 0.8494rem + 0.1136vw, 0.9375rem)
+	--space-s: clamp(1.125rem, 1.0739rem + 0.2273vw, 1.25rem)
+	--space-m: clamp(1.6875rem, 1.6108rem + 0.3409vw, 1.875rem)
+	--space-l: clamp(2.25rem, 2.1477rem + 0.4545vw, 2.5rem)
+	--space-xl: clamp(3.375rem, 3.2216rem + 0.6818vw, 3.75rem)
+	--space-2xl: clamp(4.5rem, 4.2955rem + 0.9091vw, 5rem)
+	--space-3xl: clamp(6.75rem, 6.4432rem + 1.3636vw, 7.5rem)
+	--space-s-l: clamp(1.125rem, 0.5625rem + 2.5vw, 2.5rem)
+
+	// Radius scale
+	--radius-0: 0
+	--radius-2: 2px
+	--radius-4: 4px
+	--radius-6: 6px
+	--radius-8: 8px
+	--radius-12: 12px
+	--radius-16: 16px
+	--radius-24: 24px
+	--radius-full: 9999px
+
+	// Shadow scale
+	--shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.06)
+	--shadow-md: 0 4px 12px rgba(15, 23, 42, 0.08)
+	--shadow-lg: 0 12px 32px rgba(15, 23, 42, 0.12)
+	--shadow-focus: 0 0 0 3px var(--ring)
+
+	// Layering scale
+	--z-base: 0
+	--z-raised: 10
+	--z-sticky: 100
+	--z-modal: 200
+	--z-toast: 300
+
+	// Layout
+	--header-height: 56px
+	--footer-height: 56px
+	--shell-pad: var(--space-s-l)
+	--layout-max: 1536px
+	--sidebar-min: 200px
+	--sidebar-max: 360px
+	--bare-min: 600px
+	--bare-max: 1024px
+	--body-min: 600px
+	--body-max: 800px
+	--measure: 70ch
+	--grid-max-width: 77.5rem
+	--grid-gutter: var(--space-s-l)
+	--grid-columns: 12
+
+	// Feedback palette
+	--red-500: #ef4444
+	--amber-500: #f59e0b
+	--emerald-500: #10b981
+	--sky-500: #0ea5e9
+	--feedback-danger: var(--red-500)
+	--feedback-warning: var(--amber-500)
+	--feedback-success: var(--emerald-500)
+	--feedback-info: var(--sky-500)
+
+	// Light mode palette. This block is load-bearing: it is the only one that applies
+	// with no marker on <html>, so every token stays defined with JS disabled, during
+	// SSR, and for crawlers. Never delete it in favour of an explicit [data-mode='light']
+	// block — that leaves every colour undefined until a marker lands.
+	--bg: #FFFFFF
+	--bg-surface: #F7F6F3
+	--bg-raised: #fafaf8
+	--bg-panel: #F7F6F3
+	--bg-footer: #F7F6F3
+	--bg-popover: #F0F0EF
+	--bg-dialog: #F0F0EF
+	--bg-terminal: #F3F3F5
+	--bg-input: #FFFFFF
+	--bg-canvas: #FFFFFF
+	--border: #ededed
+	--border-subtle: #ECECEC
+	--text-primary: #181818
+	--text-secondary: #676767
+	--text-muted: #a1a1a1
+	--state-hover: #e3e0e0
+	--state-hover-subtle: #ECECEC
+	--state-selected: #d2d2d2
+	--theme-color: #039140
+	--theme-color-alt: #0d6219
+	--theme: var(--theme-color)
+	--text-inverse: #FFFFFF
+	--feedback-error: #C9383E
+	--syntax-heading: #0d6219
+	--syntax-link: #039140
+	--syntax-code: #C9383E
+	--syntax-quote: #676767
+	--syntax-marker: #039140
+	--syntax-meta: #a1a1a1
+	--syntax-comment: #6A737D
+	--canvas-postit-bg: #FEF3C7
+	--canvas-postit-text: #1F1B0A
+	--shadow-popover: 0 4px 12px rgba(0, 0, 0, 0.08)
+	--shadow-drag: 0 8px 24px rgba(0, 0, 0, 0.16)
+	--bg-palette: rgba(0, 0, 0, 0.3)
+	--shadow-palette: rgba(0, 0, 0, 0.28)
+	--bg-badge: rgba(3, 145, 64, 0.1)
+	--shadow-pdf-viewer: rgba(0, 0, 0, 0.05)
+	--scrollbar-thumb: #ededed
+	--md-h1: #181818
+	--md-h2: #05bc20
+	--md-h3: #ad30ee
+	--md-bold: #a2209a
+	--md-code: #ffffff
+	--md-code-back: #1244c2
+	--md-bullet: #b02f3f
+	--md-bullet-in: #b02f3f
+	--md-blockquote: #181818
+	--border-md-table: #d7d7d7

@@ -1,0 +1,348 @@
+.mandala-nav
+	justify-content: space-between
+	padding: 1.1rem 2rem
+	border-bottom: 1px solid var(--border)
+
+.mandala-brand,
+.mandala-links a,
+.mandala-tools
+	color: var(--text-primary)
+	text-decoration: none
+
+.mandala-brand
+	font-size: 1rem
+	font-weight: 700
+	letter-spacing: -.04em
+
+.mandala-links a
+	font-size: .78rem
+
+.mandala-links a:hover,
+.mandala-related a:hover,
+.mandala-document-nav a:hover
+	color: var(--theme-color)
+
+.mandala-tools input
+	width: 10rem
+	padding: .55rem .7rem
+	border: 1px solid var(--border)
+	border-radius: 6px
+	color: var(--text-primary)
+	background: var(--bg-raised)
+	font: inherit
+	font-size: .7rem
+
+.mandala-hero
+	position: relative
+	padding-block: 6rem 7rem
+
+.mandala-hero h1
+	max-width: 46rem
+	margin: 1.1rem 0 1.25rem
+	font-size: clamp(3rem, 7vw, 6.2rem)
+	font-weight: 750
+	letter-spacing: -.09em
+	line-height: .94
+
+.mandala-hero-copy
+	max-width: 36rem
+	margin: 0
+	color: var(--text-muted)
+	font-size: 1.05rem
+	line-height: 1.65
+
+.mandala-actions
+	margin-top: 2rem
+
+.mandala-orbit
+	position: absolute
+	top: 5rem
+	right: 4rem
+	width: 14rem
+	height: 14rem
+	border: 1px solid var(--theme-color)
+	border-radius: 50%
+	opacity: .55
+
+.mandala-orbit::before,
+.mandala-orbit::after
+	position: absolute
+	inset: 1.7rem
+	border: 1px solid var(--theme-color)
+	border-radius: 50%
+	content: ''
+
+.mandala-orbit::after
+	inset: 4.6rem
+	background: var(--theme-color-alt)
+
+.mandala-orbit span
+	position: absolute
+	inset: 5.4rem
+	display: grid
+	place-items: center
+	color: var(--theme-color)
+	font-size: 2rem
+
+.mandala-collections
+	padding-bottom: 5rem
+
+.mandala-section-heading
+	justify-content: space-between
+	margin-bottom: 1.25rem
+	padding-bottom: .75rem
+	border-bottom: 1px solid var(--border)
+
+.mandala-section-heading h2
+	margin: 0
+	font-size: 1.6rem
+	letter-spacing: -.06em
+
+.mandala-section-heading span
+	color: var(--text-muted)
+	font-size: .7rem
+
+.mandala-card-list
+	display: grid
+	grid-template-columns: repeat(3, 1fr)
+	gap: .8rem
+
+.mandala-card
+	min-height: 11rem
+	padding: 1.25rem
+	border: 1px solid var(--border)
+	color: var(--text-primary)
+	background: var(--docs-surface)
+	text-decoration: none
+	transition: transform .16s ease, border-color .16s ease
+
+.mandala-card:nth-child(2)
+	transform: translateY(1.25rem)
+
+.mandala-card:hover
+	border-color: var(--theme-color)
+	transform: translateY(-.2rem)
+
+.mandala-card:nth-child(2):hover
+	transform: translateY(1rem)
+
+.mandala-card h3
+	margin: 2rem 0 .5rem
+	font-size: 1.35rem
+	letter-spacing: -.05em
+
+.mandala-card p
+	margin: 0
+	color: var(--text-muted)
+	font-size: .76rem
+	line-height: 1.55
+
+.mandala-document-layout
+	width: min(100% - 3rem, 1120px)
+	margin: 0 auto
+	padding-block: 4.5rem
+
+.mandala-document-nav,
+.mandala-related
+	color: var(--text-muted)
+	font-size: .72rem
+	line-height: 1.6
+
+.mandala-document-nav strong,
+.mandala-related strong
+	display: block
+	margin-bottom: .75rem
+	color: var(--text-primary)
+
+.mandala-document-nav a,
+.mandala-related a
+	display: block
+	padding: .35rem 0
+	color: inherit
+	text-decoration: none
+
+.mandala-document-nav a.is-active
+	color: var(--theme-color)
+
+.mandala-document-body h1
+	margin: 1rem 0 1rem
+	font-size: clamp(2.6rem, 5vw, 4.5rem)
+	font-weight: 750
+	letter-spacing: -.09em
+	line-height: .96
+
+.mandala-meta
+	margin-bottom: 2rem
+	color: var(--text-muted)
+	font-size: .66rem
+	letter-spacing: .1em
+	text-transform: uppercase
+
+.mandala-document-intro
+	color: var(--text-muted)
+	font-size: 1.05rem
+
+.mandala-document-body h2
+	margin-top: 2.75rem
+	font-size: 1.7rem
+	letter-spacing: -.06em
+
+.mandala-document-body p
+	margin: 1rem 0
+
+.mandala-callout
+	margin-block: 1.8rem
+	padding: 1rem 1.2rem
+	border-left: 3px solid var(--theme-color)
+	color: var(--text-muted)
+	background: var(--theme-color-alt)
+
+@media (max-width: 780px)
+	.mandala-nav
+		padding-inline: 1rem
+
+	.mandala-links
+		display: none
+
+	.mandala-hero
+		padding-block: 4rem 5rem
+
+	.mandala-orbit
+		top: 3rem
+		right: 0
+		width: 9rem
+		height: 9rem
+		opacity: .3
+
+	.mandala-orbit span
+		inset: 3.4rem
+
+	.mandala-orbit::before
+		inset: 1rem
+
+	.mandala-orbit::after
+		inset: 3rem
+
+	.mandala-card-list
+		grid-template-columns: 1fr
+
+	.mandala-card:nth-child(2)
+		transform: none
+
+.fs-tabs
+	display: flex
+	flex-wrap: wrap
+	gap: 4px
+	border-bottom: 1px solid var(--border)
+	margin-bottom: var(--space-m)
+	padding-bottom: 4px
+
+.button-tab
+	appearance: none
+	background: none
+	border: none
+	padding: 8px 12px
+	font: inherit
+	font-size: var(--text-bs)
+	color: var(--text-secondary)
+	cursor: pointer
+	&:hover
+		color: var(--text-primary)
+	&.active
+		color: var(--theme-color)
+	&:focus-visible
+		outline: 2px solid var(--theme-color)
+		outline-offset: 2px
+
+.fa-breadcrumb
+	font-size: 12px
+	text-transform: uppercase
+	display: flex
+	gap: 4px
+	color: var(--text-muted)
+	a
+		color: var(--text-secondary)
+		text-decoration: none
+		&:hover
+			color: var(--theme-color)
+
+.acrolls-shell
+	display: grid
+	grid-template-columns: minmax(0, 1fr)
+	&.has-sidebar
+		grid-template-columns: 280px minmax(0, 1fr)
+	@media (max-width: 1024px)
+		&.has-sidebar
+			grid-template-columns: minmax(0, 1fr)
+
+.acrolls-docs
+	display: grid
+	grid-template-columns: 1fr 280px
+	.acrolls-toc
+		position: sticky
+		top: var(--header-height)
+		display: flex
+		flex-direction: column
+		height: calc(100vh - var(--header-height))
+		padding-top: 32px
+		padding-bottom: 32px
+	@media (max-width: 1240px)
+		grid-template-columns: minmax(0, 1fr)
+		.acrolls-toc
+			display: none
+
+.acrolls-sidebar
+	position: sticky
+	top: var(--header-height)
+	height: calc(100vh - var(--header-height))
+	overflow-y: scroll
+	@media (max-width: 1024px)
+		position: static
+
+.acrolls-nav-title
+	color: var(--text-secondary)
+	font-size: var(--text-md)
+	font-weight: 400
+	cursor: pointer
+	padding: 4px 8px
+	border-radius: 4px
+	&:hover
+		background: var(--state-hover)
+
+.acrolls-nav
+	a
+		color: var(--text-secondary)
+		text-decoration: none
+		font-size: var(--text-md)
+		&:hover
+			color: var(--theme-color)
+
+.acrolls-post-head
+	padding-bottom: 32px
+	border-bottom: 1px solid var(--border)
+	h1
+		font-size: var(--text-2xl)
+		font-weight: 500
+	p
+		color: var(--text-secondary)
+
+.acrolls-pagination
+	border-top: 1px solid var(--border-subtle)
+	padding-top: 32px
+	a
+		text-decoration: none
+		color: var(--text-primary)
+		font-size: var(--text-sm)
+		&:hover
+			color: var(--theme-color-alt)
+
+.mobile-menu
+	background: var(--bg-surface)
+	position: absolute
+	top: var(--header-height)
+	right: 0
+	width: 100vw
+	height: calc(100vh - var(--header-height))
+	z-index: 500
+	overflow-y: scroll
+	padding: 32px 16px
