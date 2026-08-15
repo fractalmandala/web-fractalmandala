@@ -2,13 +2,8 @@ import { error } from '@sveltejs/kit';
 import type { PageServerLoad, EntryGenerator } from './$types';
 import { allTags, pagesForTag } from '$lib/docs/content';
 
-export const prerender = true;
+export const prerender = false;
 
-// One entry per distinct tag. The param is the raw (decoded) tag; SvelteKit encodes it back
-// into the prerendered URL, matching `tagHref()`.
-export const entries: EntryGenerator = () => {
-	return allTags().map(({ tag }) => ({ tag }));
-};
 
 export const load: PageServerLoad = async ({ params }) => {
 	const tag = params.tag;
