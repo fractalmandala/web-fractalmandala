@@ -338,11 +338,49 @@
 
 .mobile-menu
 	background: var(--bg-surface)
-	position: absolute
-	top: var(--header-height)
+	position: fixed
+	top: var(--header-height, 64px)
+	left: 0
 	right: 0
-	width: 100vw
-	height: calc(100vh - var(--header-height))
+	bottom: 0
+	width: 100%
+	height: calc(100dvh - var(--header-height, 64px))
 	z-index: 500
-	overflow-y: scroll
-	padding: 32px 16px
+	overflow-y: auto
+	-webkit-overflow-scrolling: touch
+	overscroll-behavior: contain
+	padding: 24px 16px 80px 16px
+	box-sizing: border-box
+
+	@media (min-width: 1025px)
+		display: none !important
+
+	a.top-link
+		text-decoration: none
+		color: inherit
+		font-weight: 600
+		font-size: var(--text-base)
+		padding: 8px 12px
+		background: var(--bg-raised)
+		border: 1px solid var(--border)
+		border-radius: var(--radius-md, 8px)
+
+		&:hover
+			background: var(--state-hover)
+			color: var(--theme-color)
+
+.menu-links
+	display: flex
+	a
+		text-decoration: none
+		color: inherit
+		font-size: var(--text-md)
+		background: transparent
+		padding: 4px 8px
+		border-radius: 5px
+		border: 1px solid var(--border)
+		&:hover
+			color: var(--theme-color)
+			background: var(--bg-panel)
+	@media (max-width: 1024px)
+		display: none

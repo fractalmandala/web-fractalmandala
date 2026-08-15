@@ -18,7 +18,9 @@
 	let themeName = $state<string>('My Custom Theme');
 	let themeMode = $state<'light' | 'dark'>('light');
 	let activeBgStyle = $state<BgStyle>('aura');
-	let activeTab = $state<'surfaces' | 'typography' | 'borders' | 'aura' | 'saved' | 'export'>('surfaces');
+	let activeTab = $state<'surfaces' | 'typography' | 'borders' | 'aura' | 'saved' | 'export'>(
+		'surfaces'
+	);
 	let exportFormat = $state<'sass' | 'css' | 'json' | 'tailwind'>('sass');
 	let copySuccess = $state<boolean>(false);
 	let saveSuccess = $state<boolean>(false);
@@ -33,7 +35,11 @@
 	// WCAG 2.1 Contrast Helper Functions
 	function hexToRgb(hex: string) {
 		let clean = (hex || '').trim().replace(/^#/, '');
-		if (clean.length === 3) clean = clean.split('').map((c) => c + c).join('');
+		if (clean.length === 3)
+			clean = clean
+				.split('')
+				.map((c) => c + c)
+				.join('');
 		if (clean.length < 6) return { r: 0, g: 0, b: 0 };
 		const num = parseInt(clean.slice(0, 6), 16);
 		return { r: (num >> 16) & 255, g: (num >> 8) & 255, b: num & 255 };
@@ -46,7 +52,9 @@
 
 	function luminance(hex: string) {
 		const rgb = hexToRgb(hex);
-		return 0.2126 * sRgbToLinear(rgb.r) + 0.7152 * sRgbToLinear(rgb.g) + 0.0722 * sRgbToLinear(rgb.b);
+		return (
+			0.2126 * sRgbToLinear(rgb.r) + 0.7152 * sRgbToLinear(rgb.g) + 0.0722 * sRgbToLinear(rgb.b)
+		);
 	}
 
 	function contrast(hex1: string, hex2: string) {
@@ -133,7 +141,8 @@
 			...auraLayers,
 			{
 				layer: auraLayers.length + 1,
-				background: 'radial-gradient(circle at 50% 50%, rgba(5, 150, 105, 0.45) 0%, transparent 65%)',
+				background:
+					'radial-gradient(circle at 50% 50%, rgba(5, 150, 105, 0.45) 0%, transparent 65%)',
 				blendMode: 'screen',
 				blurMobile: 70,
 				blurDesktop: 120,
@@ -191,7 +200,11 @@
 
 	// Generated Code
 	const generatedCode = $derived.by(() => {
-		const id = themeName.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '') || 'custom-theme';
+		const id =
+			themeName
+				.toLowerCase()
+				.replace(/[^a-z0-9]+/g, '-')
+				.replace(/(^-|-$)/g, '') || 'custom-theme';
 		if (exportFormat === 'sass') {
 			let res = `// ${themeName} (${themeMode.toUpperCase()})\n.theme-${id}\n`;
 			for (const [k, v] of Object.entries(tokens)) {
@@ -249,11 +262,10 @@
 	locale="en_US"
 />
 
-<div class="studio-page">
+<div class="pagebox">
 	<!-- Top Bar -->
 	<header class="studio-topbar">
 		<div class="studio-title-area">
-			<h1 class="studio-title">🎨 Theme & Aura Studio</h1>
 			<span class="studio-badge">{themeMode.toUpperCase()}</span>
 		</div>
 
@@ -308,7 +320,12 @@
 			</button>
 
 			<!-- Randomize -->
-			<button type="button" class="studio-btn" onclick={randomizeColors} title="Generate harmonious random accents">
+			<button
+				type="button"
+				class="studio-btn"
+				onclick={randomizeColors}
+				title="Generate harmonious random accents"
+			>
 				🎲 Randomize
 			</button>
 
@@ -336,7 +353,10 @@
 		<!-- Left: Interactive Live Preview Canvas -->
 		<div class="studio-canvas">
 			<!-- Canvas Header Demo -->
-			<div class="row xbetween ycenter wrap gap12" style="border-bottom: 1px solid var(--border); padding-bottom: 1rem;">
+			<div
+				class="row xbetween ycenter wrap gap12"
+				style="border-bottom: 1px solid var(--border); padding-bottom: 1rem;"
+			>
 				<div class="column gap4">
 					<span class="text-xs text-muted">BREADCRUMBS: DOCS / ESSAYS / THEOLOGY</span>
 					<h2 class="text2xl w600" style="margin: 0; color: var(--text-primary);">
@@ -352,8 +372,9 @@
 			<!-- Typography & Text Demo -->
 			<div class="column gap12">
 				<p class="text-base" style="color: var(--text-secondary); line-height: 1.6; margin: 0;">
-					In ancient Vedic cosmologies, sound (<em style="color: var(--theme-color);">Śabda</em>) is not merely an acoustic vibration,
-					but the metaphysical substrate of manifest reality. When consciousness vibrates, reality unfolds into recursive geometric mandalas.
+					In ancient Vedic cosmologies, sound (<em style="color: var(--theme-color);">Śabda</em>) is
+					not merely an acoustic vibration, but the metaphysical substrate of manifest reality. When
+					consciousness vibrates, reality unfolds into recursive geometric mandalas.
 				</p>
 
 				<!-- Blockquote -->
@@ -361,21 +382,30 @@
 					style="border-left: 3px solid var(--theme-color); padding: 0.75rem 1rem; margin: 0; background: var(--bg-surface); border-radius: 0 8px 8px 0;"
 				>
 					<p style="color: var(--text-primary); font-style: italic; margin: 0;">
-						“Whatever exists in this cosmos is energized by the subtle pulse of the primordial breath.”
+						“Whatever exists in this cosmos is energized by the subtle pulse of the primordial
+						breath.”
 					</p>
-					<span class="text-xs text-muted" style="display: block; margin-top: 0.4rem;">— Chāndogya Upaniṣad III.14.1</span>
+					<span class="text-xs text-muted" style="display: block; margin-top: 0.4rem;"
+						>— Chāndogya Upaniṣad III.14.1</span
+					>
 				</blockquote>
 			</div>
 
 			<!-- Card Surface & Raised Grid Demo -->
 			<div class="grid grid-cols-auto gap16">
-				<div class="card blank box gap8" style="background: var(--bg-surface); border: 1px solid var(--border); padding: 1.25rem; border-radius: 12px;">
+				<div
+					class="card blank box gap8"
+					style="background: var(--bg-surface); border: 1px solid var(--border); padding: 1.25rem; border-radius: 12px;"
+				>
 					<div class="row xbetween ycenter">
 						<span class="text-lg w600" style="color: var(--text-primary);">Surface Card Tier</span>
 						<span class="studio-badge">Active</span>
 					</div>
 					<p class="text-sm" style="color: var(--text-secondary); margin: 0;">
-						Rendered on <code style="font-family: monospace; color: var(--theme-color);">--bg-surface</code> with <code style="font-family: monospace; color: var(--text-muted);">--border</code> outlines.
+						Rendered on <code style="font-family: monospace; color: var(--theme-color);"
+							>--bg-surface</code
+						>
+						with <code style="font-family: monospace; color: var(--text-muted);">--border</code> outlines.
 					</p>
 					<div class="row gap8" style="margin-top: 0.5rem;">
 						<span class="contrast-pill pass-aaa">AAA 8.4:1</span>
@@ -383,17 +413,31 @@
 					</div>
 				</div>
 
-				<div class="card blank box gap8" style="background: var(--bg-raised); border: 1px solid var(--border-subtle); padding: 1.25rem; border-radius: 12px;">
+				<div
+					class="card blank box gap8"
+					style="background: var(--bg-raised); border: 1px solid var(--border-subtle); padding: 1.25rem; border-radius: 12px;"
+				>
 					<div class="row xbetween ycenter">
-						<span class="text-lg w600" style="color: var(--text-primary);">Raised Surface Tier</span>
+						<span class="text-lg w600" style="color: var(--text-primary);">Raised Surface Tier</span
+						>
 						<span class="contrast-pill pass-aa">Interactive</span>
 					</div>
 					<p class="text-sm" style="color: var(--text-secondary); margin: 0;">
-						Elevated container on <code style="font-family: monospace; color: var(--theme-color);">--bg-raised</code> with subtle divider borders.
+						Elevated container on <code style="font-family: monospace; color: var(--theme-color);"
+							>--bg-raised</code
+						> with subtle divider borders.
 					</p>
 					<div class="row gap8" style="margin-top: 0.5rem;">
-						<button type="button" class="studio-btn" style="font-size: 0.75rem; padding: 0.25rem 0.5rem;">Test Hover</button>
-						<button type="button" class="studio-btn active" style="font-size: 0.75rem; padding: 0.25rem 0.5rem;">Selected</button>
+						<button
+							type="button"
+							class="studio-btn"
+							style="font-size: 0.75rem; padding: 0.25rem 0.5rem;">Test Hover</button
+						>
+						<button
+							type="button"
+							class="studio-btn active"
+							style="font-size: 0.75rem; padding: 0.25rem 0.5rem;">Selected</button
+						>
 					</div>
 				</div>
 			</div>
@@ -402,21 +446,31 @@
 			<div class="export-code-box" style="background: var(--bg-terminal);">
 				<span style="color: #94A3B8;">// Live Token Engine Demonstration</span>
 				<br />
-				<span style="color: #F43F8E;">const</span> <span style="color: #38BDF8;">currentTheme</span> = &#123;
+				<span style="color: #F43F8E;">const</span> <span style="color: #38BDF8;">currentTheme</span>
+				= &#123;
 				<br />
 				&nbsp;&nbsp;name: <span style="color: #A3E635;">"{themeName}"</span>,
 				<br />
 				&nbsp;&nbsp;mode: <span style="color: #FBBF24;">"{themeMode}"</span>,
 				<br />
-				&nbsp;&nbsp;accent: <span style="color: {tokens['theme-color']}; font-weight: bold;">"{tokens['theme-color']}"</span>,
+				&nbsp;&nbsp;accent:
+				<span style="color: {tokens['theme-color']}; font-weight: bold;"
+					>"{tokens['theme-color']}"</span
+				>,
 				<br />
-				&nbsp;&nbsp;contrastRatio: <span style="color: #38BDF8;">"{contrast(tokens['text-primary'] || '#000', tokens['bg'] || '#fff').toFixed(2)}:1"</span>
+				&nbsp;&nbsp;contrastRatio:
+				<span style="color: #38BDF8;"
+					>"{contrast(tokens['text-primary'] || '#000', tokens['bg'] || '#fff').toFixed(2)}:1"</span
+				>
 				<br />
 				&#125;;
 			</div>
 
 			<!-- Form Inputs Demo -->
-			<div class="row gap12 wrap ycenter" style="background: var(--bg-panel); padding: 1rem; border-radius: 8px; border: 1px solid var(--border);">
+			<div
+				class="row gap12 wrap ycenter"
+				style="background: var(--bg-panel); padding: 1rem; border-radius: 8px; border: 1px solid var(--border);"
+			>
 				<input
 					type="text"
 					placeholder="Sample Form Input Field (--bg-input)"
@@ -492,7 +546,10 @@
 								<span class="token-name">--{token.key}</span>
 							</div>
 							<div class="token-picker-wrap">
-								<div class="token-color-preview" style="background: {tokens[token.key] || token.defaultVal}">
+								<div
+									class="token-color-preview"
+									style="background: {tokens[token.key] || token.defaultVal}"
+								>
 									<input
 										type="color"
 										value={tokens[token.key] || token.defaultVal}
@@ -516,19 +573,26 @@
 				<div class="studio-section">
 					<h3 class="studio-section-title">Typography & Brand Accents</h3>
 					{#each CORE_TOKENS.filter((t) => t.category === 'typography' || t.category === 'accent') as token (token.key)}
-						{@const score = getContrastScore(tokens[token.key] || token.defaultVal, tokens['bg'] || '#FFFFFF')}
+						{@const score = getContrastScore(
+							tokens[token.key] || token.defaultVal,
+							tokens['bg'] || '#FFFFFF'
+						)}
 						<div class="token-row">
 							<div class="token-info">
 								<div class="row gap6 ycenter">
 									<span class="token-label">{token.label}</span>
 									<span class="contrast-pill {score.class}" title="WCAG contrast against --bg">
-										{score.label} {score.ratio}
+										{score.label}
+										{score.ratio}
 									</span>
 								</div>
 								<span class="token-name">--{token.key}</span>
 							</div>
 							<div class="token-picker-wrap">
-								<div class="token-color-preview" style="background: {tokens[token.key] || token.defaultVal}">
+								<div
+									class="token-color-preview"
+									style="background: {tokens[token.key] || token.defaultVal}"
+								>
 									<input
 										type="color"
 										value={tokens[token.key] || token.defaultVal}
@@ -558,7 +622,10 @@
 								<span class="token-name">--{token.key}</span>
 							</div>
 							<div class="token-picker-wrap">
-								<div class="token-color-preview" style="background: {tokens[token.key] || token.defaultVal}">
+								<div
+									class="token-color-preview"
+									style="background: {tokens[token.key] || token.defaultVal}"
+								>
 									<input
 										type="color"
 										value={tokens[token.key] || token.defaultVal}
@@ -582,7 +649,12 @@
 				<div class="studio-section">
 					<div class="row xbetween ycenter">
 						<h3 class="studio-section-title">Aura Gradient Stack</h3>
-						<button type="button" class="studio-btn" style="font-size: 0.75rem;" onclick={addAuraLayer}>
+						<button
+							type="button"
+							class="studio-btn"
+							style="font-size: 0.75rem;"
+							onclick={addAuraLayer}
+						>
 							+ Add Layer
 						</button>
 					</div>
@@ -628,8 +700,7 @@
 										class="token-hex-input"
 										style="width: 100%; height: 50px; text-align: left; resize: vertical;"
 										bind:value={layer.background}
-										oninput={() => applyLiveChanges()}
-									></textarea>
+										oninput={() => applyLiveChanges()}></textarea>
 								</div>
 
 								<!-- Blend Mode & Blur -->
@@ -653,7 +724,9 @@
 									</div>
 
 									<div class="column gap2">
-										<span class="layer-label">Blur Radius ({layer.blurMobile || layer.blur || 75}px)</span>
+										<span class="layer-label"
+											>Blur Radius ({layer.blurMobile || layer.blur || 75}px)</span
+										>
 										<input
 											type="range"
 											min="10"
@@ -671,7 +744,9 @@
 
 								<!-- Opacity -->
 								<div class="layer-control-row">
-									<span class="layer-label">Opacity ({Math.round((layer.opacity ?? 1) * 100)}%)</span>
+									<span class="layer-label"
+										>Opacity ({Math.round((layer.opacity ?? 1) * 100)}%)</span
+									>
 									<input
 										type="range"
 										min="0"
@@ -697,15 +772,20 @@
 					<h3 class="studio-section-title">My Custom Themes</h3>
 					{#if themeState.customThemes.length === 0}
 						<p class="text-sm text-muted" style="margin: 0.5rem 0;">
-							No custom themes saved yet. Customize tokens and click <strong>"Save Theme"</strong> to persist your themes in local storage!
+							No custom themes saved yet. Customize tokens and click <strong>"Save Theme"</strong> to
+							persist your themes in local storage!
 						</p>
 					{:else}
 						<div class="column gap8">
 							{#each themeState.customThemes as custom (custom.id)}
 								<div class="custom-theme-item">
 									<div class="column gap2">
-										<span class="text-sm w600" style="color: var(--text-primary);">{custom.name}</span>
-										<span class="text-xs text-muted">{custom.mode.toUpperCase()} • {custom.auraName}</span>
+										<span class="text-sm w600" style="color: var(--text-primary);"
+											>{custom.name}</span
+										>
+										<span class="text-xs text-muted"
+											>{custom.mode.toUpperCase()} • {custom.auraName}</span
+										>
 									</div>
 									<div class="row gap4">
 										<button

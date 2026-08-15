@@ -26,6 +26,10 @@
 		</div>
 
 		<div class="row ycenter gap16">
+			<div class="menu-links row gap16 ycenter">
+				<a href="/docs/tags">TAGS</a>
+				<a href="/studio">STUDIO</a>
+			</div>
 			<ThemePicker />
 			<a
 				class="button-icon"
