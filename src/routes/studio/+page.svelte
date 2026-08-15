@@ -12,6 +12,13 @@
 		type TokenMeta
 	} from '$lib/utils/theme.svelte';
 	import { SeoGeoOptimizer } from 'quartzo';
+	import Aura from '$lib/icons/aura.svelte';
+	import Plain from '$lib/icons/plain.svelte';
+	import Sun from '$lib/icons/sun.svelte';
+	import Moon from '$lib/icons/moon.svelte';
+	import Random from '$lib/icons/random.svelte';
+	import Reset from '$lib/icons/reset.svelte';
+	import Save from '$lib/icons/save.svelte';
 
 	// Studio State
 	let selectedBaseId = $state<string>(themeState.current);
@@ -262,25 +269,13 @@
 	locale="en_US"
 />
 
-<div class="pagebox">
+<div class="pagebox h100vh">
 	<!-- Top Bar -->
-	<header class="studio-topbar">
-		<div class="studio-title-area">
-			<span class="studio-badge">{themeMode.toUpperCase()}</span>
-		</div>
-
+	<div class="row ycenter gap8 xbetween wrap">
 		<!-- Theme Name & Base Preset Selector -->
 		<div class="row gap8 ycenter wrap">
-			<input
-				type="text"
-				bind:value={themeName}
-				class="token-hex-input"
-				style="width: 170px; text-align: left; padding: 0.4rem 0.6rem;"
-				placeholder="Theme Name"
-			/>
-
 			<select
-				class="layer-select"
+				class="select"
 				value={selectedBaseId}
 				onchange={(e) => {
 					const found = themeState.allThemes.find((t) => t.id === e.currentTarget.value);
@@ -300,58 +295,74 @@
 					</optgroup>
 				{/if}
 			</select>
-		</div>
+			<div class="studio-actions">
+				<!-- Plain vs Aura Toggle -->
+				<button
+					type="button"
+					class="button-icon-pad"
+					data-variant="primary"
+					class:active={themeState.bgStyle === 'aura'}
+					onclick={() => themeState.toggleBgStyle()}
+				>
+					{#if themeState.bgStyle === 'aura'}
+						<Plain />
+					{:else}
+						<Aura />
+					{/if}
+				</button>
 
+				<!-- Light / Dark Flip -->
+				<button type="button" class="button-icon-pad" onclick={toggleMode}>
+					{#if themeMode === 'dark'}
+						<Sun />
+					{:else}
+						<Moon />
+					{/if}
+				</button>
+
+				<!-- Randomize -->
+				<button
+					type="button"
+					class="button-icon-pad"
+					onclick={randomizeColors}
+					title="Generate harmonious random accents"
+				>
+					<Random />
+				</button>
+
+				<!-- Reset -->
+				<button
+					type="button"
+					class="button-icon-pad"
+					onclick={() => {
+						const found = THEMES.find((t) => t.id === selectedBaseId) ?? THEMES[0];
+						loadTheme(found);
+					}}
+				>
+					<Reset />
+				</button>
+			</div>
+		</div>
 		<!-- Action Controls -->
-		<div class="studio-actions">
-			<!-- Plain vs Aura Toggle -->
-			<button
-				type="button"
-				class="studio-btn"
-				class:active={themeState.bgStyle === 'aura'}
-				onclick={() => themeState.toggleBgStyle()}
-			>
-				{themeState.bgStyle === 'aura' ? '✨ Aura Gradient' : '◻ Plain Mode'}
-			</button>
-
-			<!-- Light / Dark Flip -->
-			<button type="button" class="studio-btn" onclick={toggleMode}>
-				{themeMode === 'dark' ? '🌙 Dark' : '☀️ Light'}
-			</button>
-
-			<!-- Randomize -->
-			<button
-				type="button"
-				class="studio-btn"
-				onclick={randomizeColors}
-				title="Generate harmonious random accents"
-			>
-				🎲 Randomize
-			</button>
-
-			<!-- Reset -->
-			<button
-				type="button"
-				class="studio-btn"
-				onclick={() => {
-					const found = THEMES.find((t) => t.id === selectedBaseId) ?? THEMES[0];
-					loadTheme(found);
-				}}
-			>
-				🔄 Reset
-			</button>
-
+		<div class="row ycenter gap8">
 			<!-- Save to Local Storage -->
-			<button type="button" class="studio-btn primary" onclick={saveToLocalStorage}>
-				{saveSuccess ? '✓ Saved to Storage!' : '💾 Save Theme'}
+			<input
+				type="text"
+				bind:value={themeName}
+				class="input"
+				style="width: 240px; text-align: left;"
+				placeholder="Theme Name"
+			/>
+			<button type="button" class="button-icon-pad" onclick={saveToLocalStorage}>
+				<Save />
 			</button>
 		</div>
-	</header>
+	</div>
 
 	<!-- Split Studio Layout -->
-	<div class="studio-layout">
+	<div class="grid grid-cols-2 gap32">
 		<!-- Left: Interactive Live Preview Canvas -->
-		<div class="studio-canvas">
+		<div class="box gap16">
 			<!-- Canvas Header Demo -->
 			<div
 				class="row xbetween ycenter wrap gap12"

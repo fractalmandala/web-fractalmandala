@@ -36,16 +36,13 @@
 />
 
 <section class="pagebox">
-	<section class="box gap16 w70 border-bottom padbot32">
+	<section class="box gap16 w70">
 		<h1 class="page-title">
 			Civilization, history, philosophy, tech, wikis, fiction. a <span class="text-theme"
 				>personal blog</span
 			>
 			and <span class="text-theme">knowledge base</span>...
 		</h1>
-		<p class="text-lg text-secondary">
-			fractalmandala is a collection of writings, readings, and forays in dev and design.
-		</p>
 	</section>
 	<section class="mandala-home-section" aria-labelledby="mandala-writing-title">
 		<div class="fs-tabs" role="tablist" aria-label="Browse by section">
