@@ -140,7 +140,6 @@
 // Thin, quiet scrollbars for the sticky rails
 .sidebarleft, .sidebarright
 	scrollbar-width: thin
-	scrollbar-color: var(--border-secondary) transparent
 	&::-webkit-scrollbar
 		width: 6px
 	&::-webkit-scrollbar-thumb
@@ -156,7 +155,6 @@
 .stack
 	display: flex
 	flex-direction: column
-	justify-content: flex-start
 	> * + *
 		margin-block-start: var(--stack-gap, 16px)
 
@@ -167,7 +165,7 @@
 	gap: var(--cluster-gap, 12px)
 	align-items: center
 
-// Intrinsic sidebar: a fixed-ish rail beside a fluid main, wraps when tight
+// Intrinsic sidebar: fixed-ish rail beside a fluid main, wraps when tight
 .with-sidebar
 	display: flex
 	flex-wrap: wrap

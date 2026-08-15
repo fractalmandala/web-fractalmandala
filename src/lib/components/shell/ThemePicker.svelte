@@ -5,7 +5,6 @@
 		THEMES,
 		LIGHT_THEMES,
 		DARK_THEMES,
-		DEFAULT_THEME_ID,
 		type ThemeInfo
 	} from '$lib/utils/theme.svelte';
 	import ThemeButton from '$lib/icons/theme.svelte';
@@ -57,6 +56,7 @@
 			(t) =>
 				t.name.toLowerCase().includes(q) ||
 				t.id.toLowerCase().includes(q) ||
+				t.auraName.toLowerCase().includes(q) ||
 				t.description.toLowerCase().includes(q)
 		);
 	});
@@ -73,10 +73,8 @@
 		onclick={() => themeState.toggleMode()}
 	>
 		{#if themeState.isDark}
-			<!-- Sun Icon -->
 			<Sun />
 		{:else}
-			<!-- Moon Icon -->
 			<Moon />
 		{/if}
 	</button>
@@ -88,6 +86,7 @@
 		data-variant="icon"
 		aria-haspopup="dialog"
 		aria-expanded={themeState.isOpen}
+		title="Choose theme and aura background"
 		onclick={(e) => {
 			e.stopPropagation();
 			themeState.togglePicker();
@@ -95,11 +94,55 @@
 	>
 		<ThemeButton />
 	</button>
-
-	<!-- Popover Modal -->
 </div>
+
 {#if themeState.isOpen}
-	<div class="theme-popover" role="dialog" aria-label="Theme Palette Switcher">
+	<div class="theme-popover" role="dialog" aria-label="Theme and Aura Background Switcher">
+		<!-- Style Switcher (Plain vs Aura Gradient) -->
+		<div class="theme-style-switcher">
+			<div class="theme-style-toggle-group">
+				<button
+					type="button"
+					class="theme-style-toggle-btn"
+					class:active={themeState.bgStyle === 'plain'}
+					onclick={() => themeState.setBgStyle('plain')}
+					title="Clean distraction-free flat backgrounds"
+				>
+					<span>◻</span> Plain
+				</button>
+				<button
+					type="button"
+					class="theme-style-toggle-btn"
+					class:active={themeState.bgStyle === 'aura'}
+					onclick={() => themeState.setBgStyle('aura')}
+					title="Atmospheric gradient blend aura"
+				>
+					<span>✨</span> Aura Gradient
+				</button>
+			</div>
+
+			<button
+				type="button"
+				class="theme-icon-btn"
+				aria-label="Close theme menu"
+				onclick={() => themeState.closePicker()}
+			>
+				<svg
+					viewBox="0 0 24 24"
+					width="14"
+					height="14"
+					fill="none"
+					stroke="currentColor"
+					stroke-width="2"
+					stroke-linecap="round"
+					stroke-linejoin="round"
+				>
+					<path d="M18 6 6 18" />
+					<path d="m6 6 12 12" />
+				</svg>
+			</button>
+		</div>
+
 		<!-- Filter Tabs -->
 		<div class="theme-tabs row xbetween">
 			<div class="row gap8 ycenter">
@@ -137,26 +180,6 @@
 					NEXT
 				</button>
 			</div>
-			<button
-				type="button"
-				class="theme-icon-btn"
-				aria-label="Close theme menu"
-				onclick={() => themeState.closePicker()}
-			>
-				<svg
-					viewBox="0 0 24 24"
-					width="14"
-					height="14"
-					fill="none"
-					stroke="currentColor"
-					stroke-width="2"
-					stroke-linecap="round"
-					stroke-linejoin="round"
-				>
-					<path d="M18 6 6 18" />
-					<path d="m6 6 12 12" />
-				</svg>
-			</button>
 		</div>
 
 		<!-- Themes Grid -->
@@ -166,19 +189,27 @@
 					type="button"
 					class="theme-card"
 					class:active={themeState.current === theme.id}
+					title="{theme.name} — {theme.description} (Aura: {theme.auraName})"
 					onclick={() => {
 						themeState.setTheme(theme.id);
 					}}
 				>
-					<span class="theme-card-name">{theme.name}</span>
+					<div class="theme-card-header">
+						<span class="theme-card-name">{theme.name}</span>
+						<span class="theme-card-badge">{theme.mode}</span>
+					</div>
+
 					<div
 						class="theme-card-preview"
 						style="background-color: {theme.bgColor}; color: {theme.textColor}; border-color: {theme.accentColor}33"
 					>
 						<span class="theme-preview-dot" style="background-color: {theme.accentColor}"></span>
 						<span class="theme-preview-dot" style="background-color: {theme.textColor}"></span>
-						<span class="theme-card-badge">{theme.mode}</span>
 					</div>
+
+					<span class="theme-aura-tag">
+						✨ {theme.auraName}
+					</span>
 				</button>
 			{/each}
 		</div>
@@ -199,7 +230,7 @@
 				onclick={() => themeState.cycleRandom()}
 				title="Pick a random theme"
 			>
-				🎲 Random Theme
+				🎲 Random
 			</button>
 		</div>
 	</div>

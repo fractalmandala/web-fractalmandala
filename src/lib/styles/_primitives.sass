@@ -60,28 +60,6 @@
 	&.grid-cols-auto
 		grid-template-columns: repeat(auto-fill, minmax(400px, 1fr))
 
-.w100, .wfull
-	width: 100%
-
-.h100, .hfull
-	height: 100%
-
-.w100vw
-	width: 100vw
-
-.h100vh
-	height: 100vh
-
-.w50
-	@media (min-width: 1025px)
-		width: 50%
-.w60
-	@media (min-width: 1025px)
-		width: 60%
-.w70
-	@media (min-width: 1025px)
-		width: 70%
-
 // Grid item spans. Flat (not nested under .grid) so they can be breakpoint-cloned.
 .col-span-2
 	grid-column: span 2
@@ -134,16 +112,12 @@
 
 .border
 	border: 1px solid var(--border)
-
 .border-bottom
 	border-bottom: 1px solid var(--border)
-
 .border-top
 	border-top: 1px solid var(--border)
-
 .border-left
 	border-left: 1px solid var(--border)
-
 .border-right
 	border-right: 1px solid var(--border)
 

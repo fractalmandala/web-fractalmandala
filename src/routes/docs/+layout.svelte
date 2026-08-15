@@ -4,8 +4,8 @@
 	import Nav from '$lib/docs/Nav.svelte';
 	import { site, docSections } from '$lib/docs/content';
 	import Toc from '$lib/docs/Toc.svelte';
-	import type { DocsTocItem } from '$lib/docs/content';
 	import '$lib/styles/docsshell.sass';
+	import type { DocsTocItem } from '$lib/docs/content';
 
 	// No Acrolls components and no Acrolls CSS are imported anywhere in this surface.
 	// Acrolls is used purely as the content engine; this shell is ours.

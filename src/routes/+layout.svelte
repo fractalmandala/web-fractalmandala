@@ -4,6 +4,7 @@
 	import favicon from '$lib/assets/favicon.svg';
 	import { page } from '$app/state';
 	import Header from '$lib/components/shell/Header.svelte';
+	import AuraBackground from '$lib/components/shell/AuraBackground.svelte';
 	import { menuState, toggleMenuState } from '$lib/utils/menustate';
 	import { themeState } from '$lib/utils/theme.svelte';
 	import Nav from '$lib/docs/Nav.svelte';
@@ -20,6 +21,7 @@
 	<link rel="icon" href={favicon} />
 </svelte:head>
 
+<AuraBackground />
 <div class="box fullwrapper">
 	<Header />
 	<main class="inwrapper bodywrapper">
