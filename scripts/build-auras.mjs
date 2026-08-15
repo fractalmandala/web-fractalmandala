@@ -66,9 +66,11 @@ let sass = `// Aura Gradients Engine for Fractal Mandala
 [data-bg-style="aura"]
 \t.aura-ambient
 \t\tdisplay: block
-\t.appshell
-\t\tbackground-color: color-mix(in srgb, var(--bg) 84%, transparent) !important
-\t.appheader
+\t.fullwrapper, .appshell, .bodywrapper, .appbody
+\t\tbackground: transparent !important
+\t\tbackground-color: transparent !important
+\t\tbackground-image: none !important
+\t.newheader, .appheader
 \t\tbackground: color-mix(in srgb, var(--bg) 75%, transparent) !important
 \t\tbackdrop-filter: blur(12px)
 \t\t-webkit-backdrop-filter: blur(12px)
@@ -76,12 +78,16 @@ let sass = `// Aura Gradients Engine for Fractal Mandala
 .aura-ambient
 \tposition: fixed
 \tinset: 0
-\tz-index: -1
+\tz-index: 0
 \toverflow: hidden
 \tpointer-events: none
 \tcontain: strict
 \ttransform: translateZ(0)
 \twill-change: transform
+
+.fullwrapper, .appshell
+\tposition: relative
+\tz-index: 1
 
 .aura-layer
 \tposition: absolute
@@ -103,7 +109,7 @@ for (const [themeId, auraId] of Object.entries(mapping)) {
 		const idx = i + 1;
 		const cleanBg = l.background.replace(/\s+/g, ' ').trim();
 		const blend = l.blendMode || 'normal';
-		const blur = l.blurDesktop || (l.blur ? Math.round(l.blur * 2.5) : 80);
+		const blur = l.blurMobile || (l.blur ? Math.min(Math.round(l.blur * 1.5), 90) : 75);
 		const op = l.opacity !== undefined ? l.opacity : 1;
 
 		sass += `\t.aura-layer-${idx}\n`;
