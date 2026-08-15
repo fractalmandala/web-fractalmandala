@@ -80,13 +80,6 @@
 	border-radius: var(--radius-full)
 	border: 1.5px solid var(--bg-surface)
 
-.theme-popover-backdrop
-	position: fixed
-	inset: 0
-	z-index: calc(var(--z-modal) - 1)
-	background: rgba(0, 0, 0, 0.25)
-	backdrop-filter: blur(2px)
-
 @keyframes themePopoverFadeIn
 	from
 		opacity: 0
@@ -96,7 +89,6 @@
 		transform: translateY(0) scale(1)
 
 .theme-popover
-	position: absolute
 	right: 0
 	z-index: var(--z-modal)
 	display: flex
@@ -106,6 +98,7 @@
 	overflow: hidden
 	animation: themePopoverFadeIn 0.18s cubic-bezier(0.16, 1, 0.3, 1)
 	@media (min-width: 1025px)
+		position: absolute
 		box-shadow: var(--shadow-lg, 0 16px 36px rgba(0, 0, 0, 0.18))
 		border-radius: var(--radius-12)
 		border: 1px solid var(--border)
@@ -113,9 +106,10 @@
 		width: min(460px, 92vw)
 		top: calc(100% + 8px)
 	@media (max-width: 1024px)
+		position: fixed
 		top: var(--header-height)
 		height: calc(100vh - var(--header-height))
-		width: 180px
+		width: 250px
 
 .theme-style-switcher
 	display: flex
